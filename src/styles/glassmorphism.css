@@ -1,0 +1,505 @@
+/* Premium Glassmorphism and Text Animations for TBS Wedding Platform */
+
+/* Glassmorphism Card Effects */
+.glassmorphism-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.glassmorphism-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.glassmorphism-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  z-index: 10;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.glassmorphism-card:hover::before {
+  opacity: 1;
+}
+
+/* Text Masking Animation */
+.text-masking {
+  background: linear-gradient(45deg, #8B5CF6, #EC4899, #F59E0B, #10B981);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textMaskingFlow 3s ease-in-out infinite;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+@keyframes textMaskingFlow {
+  0%, 100% { 
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  25% { 
+    background-position: 50% 0%;
+    filter: brightness(1.1);
+  }
+  50% { 
+    background-position: 100% 50%;
+    filter: brightness(1.2);
+  }
+  75% { 
+    background-position: 50% 100%;
+    filter: brightness(1.1);
+  }
+}
+
+/* Animated Gradient Text */
+.animated-gradient-text {
+  background: linear-gradient(135deg, #8B5CF6, #EC4899, #F59E0B);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 2.5s ease-in-out infinite;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Shimmer Effect */
+.shimmer-text {
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.8) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Underline Reveal Animation */
+.underline-reveal {
+  position: relative;
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.underline-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #8B5CF6, #EC4899);
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.underline-reveal:hover::after {
+  width: 100%;
+}
+
+/* Category Heading Hover Effects */
+.category-heading {
+  position: relative;
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.category-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Trigger underline when hovering over the entire glassmorphism card */
+.glassmorphism-card:hover .category-heading::after {
+  width: 100%;
+}
+
+/* Photography Category */
+.category-heading.photography {
+  color: #4a0000;
+  font-family: "'Playfair Display', 'Times New Roman', serif";
+}
+
+.category-heading.photography::after {
+  background: linear-gradient(90deg, #4a0000, #6a0000);
+}
+
+.glassmorphism-card:hover .category-heading.photography {
+  color: #4a0000;
+  text-shadow: 0 0 10px rgba(74, 0, 0, 0.3);
+}
+
+/* Makeup Category */
+.category-heading.makeup {
+  color: #4a0000;
+  font-family: "'Playfair Display', 'Times New Roman', serif";
+}
+
+.category-heading.makeup::after {
+  background: linear-gradient(90deg, #4a0000, #6a0000);
+}
+
+.glassmorphism-card:hover .category-heading.makeup {
+  color: #4a0000;
+  text-shadow: 0 0 10px rgba(74, 0, 0, 0.3);
+}
+
+/* Planning & Decor Category */
+.category-heading.planning {
+  color: #4a0000;
+  font-family: "'Playfair Display', 'Times New Roman', serif";
+}
+
+.category-heading.planning::after {
+  background: linear-gradient(90deg, #4a0000, #6a0000);
+}
+
+.glassmorphism-card:hover .category-heading.planning {
+  color: #4a0000;
+  text-shadow: 0 0 10px rgba(74, 0, 0, 0.3);
+}
+
+/* Letter-by-Letter Animation */
+.letter-animate {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: letterSlide 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes letterSlide {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered Letter Animation */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+.stagger-7 { animation-delay: 0.7s; }
+.stagger-8 { animation-delay: 0.8s; }
+
+/* Scroll-triggered Animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle Pulse Animation */
+.pulse-subtitle {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Premium Font Styling */
+.premium-heading {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.premium-subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+/* Luxury Accent Colors */
+.luxury-gold {
+  background: linear-gradient(135deg, #F59E0B, #D97706, #B45309);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luxury-rose {
+  background: linear-gradient(135deg, #EC4899, #DB2777, #BE185D);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luxury-purple {
+  background: linear-gradient(135deg, #8B5CF6, #7C3AED, #6D28D9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Micro-interactions */
+.micro-interaction {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.micro-interaction:hover {
+  transform: scale(1.05);
+}
+
+/* Parallax Effect */
+.parallax-element {
+  transition: transform 0.1s ease-out;
+}
+
+/* Blog Card Glassmorphism Effects */
+.blog-card {
+  background: rgba(244, 217, 234, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(244, 217, 234, 0.4);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(244, 217, 234, 0.1),
+    inset 0 1px 0 rgba(244, 217, 234, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(244, 217, 234, 0.2) 0%, 
+    rgba(244, 217, 234, 0.1) 50%, 
+    rgba(244, 217, 234, 0.2) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.blog-card:hover {
+  transform: scale(1.03);
+  box-shadow: 
+    0 20px 60px rgba(251, 191, 36, 0.15),
+    0 0 0 1px rgba(255, 251, 235, 0.4),
+    inset 0 1px 0 rgba(255, 251, 235, 0.4);
+}
+
+.blog-card:hover::before {
+  opacity: 1;
+}
+
+/* Blog Card Content Animations */
+.blog-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.blog-title {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+}
+
+.blog-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4a0000, #d97706, #4a0000);
+  border-radius: 2px;
+  transition: width 0.8s ease-in-out;
+}
+
+.blog-card:hover .blog-title::after {
+  width: 100%;
+  animation: drawLineBlog 1.6s ease-in-out forwards;
+}
+
+@keyframes drawLineBlog {
+  0% {
+    width: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    width: 100%;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.blog-card:hover .blog-title {
+  transform: scale(1.01);
+}
+
+.blog-description {
+  opacity: 0.8;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(0);
+}
+
+.blog-card:hover .blog-description {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.blog-link {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: inline-flex;
+  align-items: center;
+}
+
+.blog-link:hover {
+  transform: translateX(4px);
+}
+
+.blog-link svg {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.blog-link:hover svg {
+  transform: translateX(2px);
+}
+
+/* Blog Card Image Effects */
+.blog-image {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(139, 92, 246, 0.1) 0%, 
+    rgba(236, 72, 153, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.blog-card:hover .blog-image {
+  transform: scale(1.05);
+}
+
+.blog-card:hover .blog-image::after {
+  opacity: 1;
+}
+
+/* Blog Badge Animation */
+.blog-badge {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.blog-card:hover .blog-badge {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Staggered Animation for Blog Cards */
+.blog-card:nth-child(1) { animation-delay: 0ms; }
+.blog-card:nth-child(2) { animation-delay: 100ms; }
+.blog-card:nth-child(3) { animation-delay: 200ms; }
+.blog-card:nth-child(4) { animation-delay: 300ms; }
+
+/* Performance Optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .glassmorphism-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  .text-masking {
+    animation-duration: 4s;
+  }
+  
+  .animated-gradient-text {
+    animation-duration: 3s;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .text-masking,
+  .animated-gradient-text,
+  .shimmer-text,
+  .letter-animate,
+  .pulse-subtitle {
+    animation: none;
+  }
+  
+  .glassmorphism-card:hover {
+    transform: none;
+  }
+}

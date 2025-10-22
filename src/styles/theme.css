@@ -1,0 +1,6 @@
+:root {
+  --brand-primary: #7c3aed;
+  --brand-accent: #f59e0b;
+}
+
+html, body, #root { height: 100%; }
