@@ -79,6 +79,9 @@ export default function HeroSection() {
           className={`absolute inset-0 h-full w-full object-cover scale-105 transition-opacity duration-1000 ease-in-out ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
+          style={{
+            transform: 'translateX(-100px) scale(1.05)'
+          }}
         />
       ))}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-ivory-50/30 to-cream-50/30" />
