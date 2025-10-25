@@ -80,7 +80,7 @@ export default function HeroSection() {
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
-            transform: 'translateX(-200px) scale(1.05)'
+            transform: 'translateX(100px) scale(1.05)'
           }}
         />
       ))}
