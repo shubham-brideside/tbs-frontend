@@ -12,7 +12,7 @@ const AnimatedSubtitle: React.FC<AnimatedSubtitleProps> = ({
   className = '',
   delay = 0
 }) => {
-  const [ref, isVisible] = useScrollReveal<HTMLParagraphElement>(0.2);
+  const [ref, isVisible] = useScrollReveal(0.2);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const AnimatedSubtitle: React.FC<AnimatedSubtitleProps> = ({
 
   return (
     <p
-      ref={ref}
+      ref={ref as React.RefObject<HTMLParagraphElement>}
       className={`premium-subtitle pulse-subtitle ${
         shouldAnimate ? 'visible' : 'scroll-reveal'
       } ${className}`}

@@ -46,56 +46,55 @@ export default function PlanningForm() {
 
   if (showThankYou) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50">
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#F9F9F9' }}>
         <div className="text-center p-8 max-w-2xl mx-auto">
           <div className="mb-6">
-            <div className="text-6xl mb-4">🌸</div>
-            <h1 className="text-4xl font-bold mb-4" style={{ color: '#4a0000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>
-              Thank You
+            <h1 className="text-4xl font-bold mb-4" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>
+              Thank You !!
             </h1>
           </div>
           
-          <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
-            <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+          <div className="rounded-2xl shadow-lg p-8 mb-6" style={{ backgroundColor: '#FFFFFF', borderColor: '#000000', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
+            <p className="text-xl mb-6 leading-relaxed" style={{ color: '#000000' }}>
               🌸 Your dream wedding journey begins now! 🌸
             </p>
-            <p className="text-lg text-gray-600 mb-4">
+            <p className="text-lg mb-4" style={{ color: '#1A1A1A' }}>
               Our expert team will connect with you shortly
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="text-center p-4 bg-gradient-to-r from-amber-100 to-amber-200 rounded-lg">
-                <p className="font-semibold" style={{ color: '#4a0000' }}>Photographers</p>
+              <div className="text-center p-4 rounded-lg" style={{ backgroundColor: '#FFFFFF', borderColor: '#000000', border: '1px solid' }}>
+                <p className="font-semibold" style={{ color: '#000000' }}>Photographers</p>
               </div>
-              <div className="text-center p-4 bg-gradient-to-r from-amber-100 to-amber-200 rounded-lg">
-                <p className="font-semibold" style={{ color: '#4a0000' }}>Makeup Artists</p>
+              <div className="text-center p-4 rounded-lg" style={{ backgroundColor: '#FFFFFF', borderColor: '#000000', border: '1px solid' }}>
+                <p className="font-semibold" style={{ color: '#000000' }}>Makeup Artists</p>
               </div>
-              <div className="text-center p-4 bg-gradient-to-r from-amber-100 to-amber-200 rounded-lg">
-                <p className="font-semibold" style={{ color: '#4a0000' }}>Decor & Planning</p>
+              <div className="text-center p-4 rounded-lg" style={{ backgroundColor: '#FFFFFF', borderColor: '#000000', border: '1px solid' }}>
+                <p className="font-semibold" style={{ color: '#000000' }}>Decor & Planning</p>
               </div>
             </div>
-            <p className="text-lg text-gray-600 mb-4">
+            <p className="text-lg mb-4" style={{ color: '#1A1A1A' }}>
               <strong>Our Success Stats:</strong>
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-              <div className="p-3 bg-gradient-to-r from-amber-100 to-amber-200 rounded-lg">
-                <div className="text-2xl font-bold" style={{ color: '#4a0000' }}>10K+</div>
-                <div className="text-sm text-gray-600">Happy Brides</div>
+              <div className="p-3 rounded-lg" style={{ backgroundColor: '#FFFFFF', borderColor: '#000000', border: '1px solid' }}>
+                <div className="text-2xl font-bold" style={{ color: '#000000' }}>10K+</div>
+                <div className="text-sm" style={{ color: '#1A1A1A' }}>Happy Couples</div>
               </div>
-              <div className="p-3 bg-gradient-to-r from-amber-100 to-amber-200 rounded-lg">
-                <div className="text-2xl font-bold" style={{ color: '#4a0000' }}>500+</div>
-                <div className="text-sm text-gray-600">Verified Vendors</div>
+              <div className="p-3 rounded-lg" style={{ backgroundColor: '#FFFFFF', borderColor: '#000000', border: '1px solid' }}>
+                <div className="text-2xl font-bold" style={{ color: '#000000' }}>500+</div>
+                <div className="text-sm" style={{ color: '#1A1A1A' }}>Real Weddings</div>
               </div>
-              <div className="p-3 bg-gradient-to-r from-amber-100 to-amber-200 rounded-lg">
-                <div className="text-2xl font-bold" style={{ color: '#4a0000' }}>98%</div>
-                <div className="text-sm text-gray-600">Satisfaction Rate</div>
+              <div className="p-3 rounded-lg" style={{ backgroundColor: '#FFFFFF', borderColor: '#000000', border: '1px solid' }}>
+                <div className="text-2xl font-bold" style={{ color: '#000000' }}>98%</div>
+                <div className="text-sm" style={{ color: '#1A1A1A' }}>Satisfaction Rate</div>
               </div>
             </div>
           </div>
           
-          <p className="text-lg font-medium" style={{ color: '#4a0000' }}>
+          <p className="text-lg font-medium" style={{ color: '#000000' }}>
             🌸 We can't wait to make your special day absolutely magical! 🌸
           </p>
-          <p className="text-sm text-gray-500 mt-4">
+          <p className="text-sm mt-4" style={{ color: '#1A1A1A' }}>
             You'll receive a call within 24 hours from our wedding planning experts.
           </p>
         </div>
@@ -104,11 +103,11 @@ export default function PlanningForm() {
   }
 
   return (
-    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50">
+    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2" style={{ backgroundColor: '#F9F9F9' }}>
       {/* Left: wedding image background */}
       <div className="hidden lg:flex relative items-end justify-center p-10 overflow-hidden">
         <img
-          src={IMAGES.planningFormBackground}
+          src="https://bridesideimages.blob.core.windows.net/tbs-website-images/WhatsApp Image 2025-10-25 at 16.19.44.jpeg"
           alt="Beautiful Wedding Photography"
           className="absolute inset-0 w-full h-full object-cover"
           onError={(e) => {
@@ -127,12 +126,12 @@ export default function PlanningForm() {
       </div>
 
       {/* Right: steps */}
-      <div className="flex flex-col justify-center p-6 sm:p-10 bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50">
+      <div className="flex flex-col justify-center p-6 sm:p-10" style={{ backgroundColor: '#F9F9F9' }}>
         {/* Step header */}
         {step === 0 ? (
           <>
-            <h2 className="text-2xl font-extrabold" style={{ color: '#4a0000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>Select Your Wedding Services</h2>
-            <p className="mt-1 text-gray-600">Choose one or more services</p>
+            <h2 className="text-2xl font-extrabold" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>Select Your Wedding Services</h2>
+            <p className="mt-1" style={{ color: '#1A1A1A' }}>Choose one or more services</p>
             <div className="mt-6 grid gap-4">
               {[
                 { k: "photography", title: "Photography", desc: "Professional wedding photography and videography" },
@@ -141,24 +140,24 @@ export default function PlanningForm() {
               ].map((c: any) => {
                 const active = selectedCategories[c.k as CategoryKey];
                 return (
-                  <label key={c.k} className={"flex cursor-pointer items-start gap-4 rounded-2xl border p-4 shadow-sm " + (active ? "border-maroon-300 bg-gradient-to-r from-amber-100 to-amber-200" : "border-gray-200 bg-gradient-to-r from-amber-50 to-amber-100 hover:shadow hover:border-maroon-200") }>
+                  <label key={c.k} className={"flex cursor-pointer items-start gap-4 rounded-2xl border p-4 shadow-sm " + (active ? "border-black" : "border-gray-200 hover:shadow hover:border-gray-300") } style={{ background: active ? '#FFFFFF' : '#FFFFFF', borderColor: '#000000', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
                     <input type="checkbox" className="mt-1" checked={active} onChange={() => toggleCategory(c.k as CategoryKey)} />
                     <span className="flex-1">
-                      <span className="block text-lg font-semibold">{c.title}</span>
-                      <span className="block text-sm text-gray-600">{c.desc}</span>
+                      <span className="block text-lg font-semibold" style={{ color: '#000000' }}>{c.title}</span>
+                      <span className="block text-sm" style={{ color: '#1A1A1A' }}>{c.desc}</span>
                     </span>
                   </label>
                 );
               })}
             </div>
-            <button disabled={!canProceedCategories} onClick={() => setStep(1)} className={"mt-8 w-full rounded-md px-6 py-3 font-semibold text-white shadow " + (canProceedCategories ? "bg-[#4a0000] hover:opacity-95" : "bg-gray-300 cursor-not-allowed")}>Next</button>
+            <button disabled={!canProceedCategories} onClick={() => setStep(1)} className={"mt-8 w-full rounded-md px-6 py-3 font-semibold text-white shadow " + (canProceedCategories ? "hover:opacity-95" : "bg-gray-300 cursor-not-allowed")} style={{ backgroundColor: canProceedCategories ? '#000000' : undefined, borderColor: canProceedCategories ? '#000000' : undefined }}>Next</button>
           </>
         ) : (
           <>
-            <p className="text-sm text-gray-500">{step}/{stepsTotal} steps</p>
+            <p className="text-sm" style={{ color: '#1A1A1A' }}>{step}/{stepsTotal} steps</p>
             {step === 1 && (
               <div>
-                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#4a0000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>Where do you want to host your wedding?</h2>
+                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>Where do you want to host your wedding?</h2>
                 <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                   {[
                     {label: "Top Cities", key: "top"},
@@ -174,13 +173,13 @@ export default function PlanningForm() {
                         if (b.key === "not_listed") { setCity("Not listed"); setStep(2); return; }
                         setShowCityPicker(true);
                       }}
-                      className={"rounded-2xl border p-6 text-center shadow-sm bg-gradient-to-r from-amber-100 to-amber-200 border-maroon-200 hover:shadow hover:border-maroon-300 hover:bg-gradient-to-r hover:from-amber-200 hover:to-amber-300 " + (city && city!=="Not listed"?"":"")}
+                      className={"rounded-2xl border p-6 text-center shadow-sm hover:shadow " + (city && city!=="Not listed"?"":"")} style={{ background: '#FFFFFF', borderColor: '#000000', color: '#000000', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}
                     >
                       {b.label}
                     </button>
                   ))}
                 </div>
-                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(0)} className="rounded border px-4 py-2">Back</button><button disabled={!city} onClick={()=>setStep(2)} className={"rounded px-6 py-2 text-white " + (city?"bg-[#4a0000] hover:opacity-95":"bg-gray-300")}>Next</button></div>
+                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(0)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button><button disabled={!city} onClick={()=>setStep(2)} className={"rounded px-6 py-2 text-white " + (city?"hover:opacity-95":"bg-gray-300")} style={{ backgroundColor: city ? '#000000' : undefined, borderColor: city ? '#000000' : undefined }}>Next</button></div>
 
                 {showCityPicker && (
                   <CityPicker onClose={()=>setShowCityPicker(false)} onSelect={(c)=>{setCity(c); setShowCityPicker(false); setStep(2);}} />
@@ -190,14 +189,14 @@ export default function PlanningForm() {
 
             {step === 2 && (
               <div>
-                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#4a0000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>When do you plan to have your wedding?</h2>
+                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>When do you plan to have your wedding?</h2>
                 <div className="mt-4 flex gap-2">
                   {[2025,2026,2027].map((y)=> (
-                    <button key={y} onClick={()=>setYear(y)} className={"rounded-full px-4 py-2 " + (year===y?"bg-gradient-to-r from-amber-200 to-amber-300 border-maroon-300":"bg-gradient-to-r from-amber-100 to-amber-200 border-maroon-200 hover:border-maroon-300")}>{y}</button>
+                    <button key={y} onClick={()=>setYear(y)} className={"rounded-full px-4 py-2 " + (year===y?"":"")} style={{ background: year===y ? '#000000' : '#FFFFFF', borderColor: '#000000', color: year===y ? '#FFFFFF' : '#000000', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>{y}</button>
                   ))}
                 </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <select value={month} onChange={(e)=>setMonth(e.target.value)} className="rounded border border-maroon-200 px-3 py-2 bg-gradient-to-r from-amber-100 to-amber-200">
+                  <select value={month} onChange={(e)=>setMonth(e.target.value)} className="rounded border px-3 py-2" style={{ borderColor: '#000000', background: '#FFFFFF', color: '#000000' }}>
                     {"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ").map((m)=>(<option key={m} value={m}>{m}</option>))}
                   </select>
                   <input 
@@ -206,7 +205,7 @@ export default function PlanningForm() {
                     placeholder="Select your date" 
                     onClick={() => setShowCalendar(!showCalendar)}
                     readOnly
-                    className="rounded border border-maroon-200 px-3 py-2 bg-gradient-to-r from-amber-100 to-amber-200 cursor-pointer" 
+                    className="rounded border px-3 py-2 cursor-pointer" style={{ borderColor: '#000000', background: '#FFFFFF', color: '#000000' }} 
                   />
                 </div>
                 <label className="mt-3 flex items-center gap-2"><input type="checkbox" checked={dateNotConfirmed} onChange={(e)=>setDateNotConfirmed(e.target.checked)} /> The wedding date isn't confirmed yet</label>
@@ -220,20 +219,29 @@ export default function PlanningForm() {
                       setSelectedDate(date);
                       setDateRange(date.toString());
                       setShowCalendar(false);
+                      // Automatically proceed to next step after date selection
+                      setStep(3);
                     }}
                     onClose={() => setShowCalendar(false)}
                   />
                 )}
                 
-                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(1)} className="rounded border px-4 py-2">Back</button><button onClick={()=>setStep(3)} className="rounded bg-[#4a0000] hover:opacity-95 px-6 py-2 text-white">Next</button></div>
+                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(1)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button><button onClick={()=>setStep(3)} className="rounded hover:opacity-95 px-6 py-2 text-white" style={{ backgroundColor: '#000000', borderColor: '#000000' }}>Next</button></div>
               </div>
             )}
 
             {step === 3 && (
               <div>
-                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#4a0000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>How many guests are you expecting?</h2>
-                <input value={guests} onChange={(e)=>setGuests(e.target.value.replace(/\D/g,""))} placeholder="e.g., 150" className="mt-4 w-full rounded border border-maroon-200 px-3 py-3 bg-gradient-to-r from-amber-100 to-amber-200" />
-                <p className="mt-2 text-sm text-gray-600">💡 Mention the total guests of your wedding day</p>
+                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>How many guests are you expecting?</h2>
+                <input value={guests} onChange={(e)=>{
+                  const value = e.target.value.replace(/\D/g,"");
+                  setGuests(value);
+                  // Auto-advance to next step if 3-digit number is entered
+                  if (value.length === 3) {
+                    setStep(4);
+                  }
+                }} placeholder="e.g., 150" className="mt-4 w-full rounded border px-3 py-3" style={{ borderColor: '#000000', background: '#FFFFFF', color: '#000000' }} />
+                <p className="mt-2 text-sm" style={{ color: '#1A1A1A' }}>💡 Mention the total guests of your wedding day</p>
                 <label className="mt-3 flex items-center gap-2">
                   <input 
                     type="checkbox" 
@@ -242,31 +250,61 @@ export default function PlanningForm() {
                   /> 
                   Not Decided yet
                 </label>
-                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(2)} className="rounded border px-4 py-2">Back</button><button disabled={!guests && !guestsNotDecided} onClick={()=>setStep(4)} className={"rounded px-6 py-2 text-white " + ((guests || guestsNotDecided)?"bg-[#4a0000] hover:opacity-95":"bg-gray-300")}>Next</button></div>
+                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(2)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button><button disabled={!guests && !guestsNotDecided} onClick={()=>setStep(4)} className={"rounded px-6 py-2 text-white " + ((guests || guestsNotDecided)?"hover:opacity-95":"bg-gray-300")} style={{ backgroundColor: (guests || guestsNotDecided) ? '#000000' : undefined, borderColor: (guests || guestsNotDecided) ? '#000000' : undefined }}>Next</button></div>
               </div>
             )}
 
             {step === 4 && (
               <div>
-                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#4a0000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>What is your estimated budget?</h2>
+                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>What is your estimated budget?</h2>
                 <div className="mt-6 grid gap-6">
                   {selectedCategories.photography && (
-                    <BudgetSlider label="Photography" min={100000} max={5000000} value={budget.photography} onChange={(v)=>setBudget(b=>({...b, photography:v}))} helper="Professional photography and videography services" />
+                    <BudgetSlider label="Photography" min={100000} max={5000000} value={budget.photography} onChange={(v)=>{
+                      setBudget(b=>({...b, photography:v}));
+                      // Check if all selected categories have budgets set
+                      const newBudget = {...budget, photography: v};
+                      const allBudgetsSet = Object.keys(selectedCategories).every(key => 
+                        !selectedCategories[key as CategoryKey] || newBudget[key as keyof typeof newBudget] !== undefined
+                      );
+                      if (allBudgetsSet) {
+                        setStep(5);
+                      }
+                    }} helper="Professional photography and videography services" />
                   )}
                   {selectedCategories.makeup && (
-                    <BudgetSlider label="Makeup" min={40000} max={600000} value={budget.makeup} onChange={(v)=>setBudget(b=>({...b, makeup:v}))} helper="Bridal makeup and beauty services for all events" />
+                    <BudgetSlider label="Makeup" min={40000} max={600000} value={budget.makeup} onChange={(v)=>{
+                      setBudget(b=>({...b, makeup:v}));
+                      // Check if all selected categories have budgets set
+                      const newBudget = {...budget, makeup: v};
+                      const allBudgetsSet = Object.keys(selectedCategories).every(key => 
+                        !selectedCategories[key as CategoryKey] || newBudget[key as keyof typeof newBudget] !== undefined
+                      );
+                      if (allBudgetsSet) {
+                        setStep(5);
+                      }
+                    }} helper="Bridal makeup and beauty services for all events" />
                   )}
                   {selectedCategories.decor && (
-                    <BudgetSlider label="Planning & Decor" min={300000} max={10000000} value={budget.decor} onChange={(v)=>setBudget(b=>({...b, decor:v}))} helper="Complete wedding planning and decoration" />
+                    <BudgetSlider label="Planning & Decor" min={300000} max={10000000} value={budget.decor} onChange={(v)=>{
+                      setBudget(b=>({...b, decor:v}));
+                      // Check if all selected categories have budgets set
+                      const newBudget = {...budget, decor: v};
+                      const allBudgetsSet = Object.keys(selectedCategories).every(key => 
+                        !selectedCategories[key as CategoryKey] || newBudget[key as keyof typeof newBudget] !== undefined
+                      );
+                      if (allBudgetsSet) {
+                        setStep(5);
+                      }
+                    }} helper="Complete wedding planning and decoration" />
                   )}
                 </div>
-                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(3)} className="rounded border px-4 py-2">Back</button><button onClick={()=>setStep(5)} className="rounded bg-[#4a0000] hover:opacity-95 px-6 py-2 text-white">Next</button></div>
+                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(3)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button><button onClick={()=>setStep(5)} className="rounded hover:opacity-95 px-6 py-2 text-white" style={{ backgroundColor: '#000000', borderColor: '#000000' }}>Next</button></div>
               </div>
             )}
 
             {step === 5 && (
               <div>
-                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#4a0000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>What shall we call you?</h2>
+                <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>What shall we call you?</h2>
                 <input 
                   value={name} 
                   onChange={(e)=>setName(e.target.value)} 
@@ -280,7 +318,7 @@ export default function PlanningForm() {
                       }
                     }
                   }}
-                  className="mt-4 w-full rounded border border-maroon-200 px-3 py-3 bg-gradient-to-r from-amber-100 to-amber-200" 
+                  className="mt-4 w-full rounded border px-3 py-3" style={{ borderColor: '#000000', background: '#FFFFFF', color: '#000000' }} 
                 />
                 <button
                   disabled={!name || submitting}
@@ -365,13 +403,14 @@ export default function PlanningForm() {
                   }}
                   className={
                     "mt-6 w-full rounded px-6 py-3 font-semibold text-white " +
-                    (name && !submitting ? "bg-[#4a0000] hover:opacity-95" : "bg-gray-300 cursor-not-allowed")
+                    (name && !submitting ? "hover:opacity-95" : "bg-gray-300 cursor-not-allowed")
                   }
+                  style={{ backgroundColor: (name && !submitting) ? '#000000' : undefined, borderColor: (name && !submitting) ? '#000000' : undefined }}
                 >
                   {submitting ? "Submitting..." : "Submit"}
                 </button>
-                <div className="mt-4 text-sm text-gray-600">We will contact you with personalized recommendations.</div>
-                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(4)} className="rounded border px-4 py-2">Back</button></div>
+                <div className="mt-4 text-sm" style={{ color: '#1A1A1A' }}>We will contact you with personalized recommendations.</div>
+                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(4)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button></div>
               </div>
             )}
           </>
@@ -415,7 +454,7 @@ function CityPicker({ onClose, onSelect }:{ onClose: ()=>void; onSelect:(city:st
       <div className="mx-auto max-w-5xl rounded-2xl bg-white p-6" onClick={(e)=>e.stopPropagation()}>
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold">Select City</h3>
-          <button onClick={onClose} className="rounded border px-3 py-1">Close</button>
+          <button onClick={onClose} className="rounded border px-3 py-1" style={{ color: '#000000', borderColor: '#000000' }}>Close</button>
         </div>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-y-6 gap-x-16">
           {sections.map(sec => (
@@ -427,7 +466,7 @@ function CityPicker({ onClose, onSelect }:{ onClose: ()=>void; onSelect:(city:st
                 (sec.title === "States" ? "pl-4 " : "")
               }
             >
-              <h4 className="font-semibold text-pink-600">{sec.title}</h4>
+              <h4 className="font-semibold" style={{ color: '#000000' }}>{sec.title}</h4>
               {sec.title === "Other Cities" ? (
                 <div className="mt-2 grid grid-cols-2 gap-x-8">
                   <div className="space-y-2 pr-2">
@@ -461,11 +500,11 @@ function CityPicker({ onClose, onSelect }:{ onClose: ()=>void; onSelect:(city:st
 function BudgetSlider({ label, min, max, value, onChange, helper }:{ label:string; min:number; max:number; value:number|undefined; onChange:(v:number)=>void; helper:string }){
   const current = value ?? min;
   return (
-    <div className="rounded-2xl border border-maroon-200 p-4 bg-gradient-to-r from-amber-100 to-amber-200">
-      <div className="flex items-center justify-between"><h3 className="text-lg font-semibold">{label} Budget</h3><span className="text-maroon-800 font-bold">₹{Math.round(current/1000)}K</span></div>
+    <div className="rounded-2xl border p-4" style={{ borderColor: '#000000', background: '#FFFFFF', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
+      <div className="flex items-center justify-between"><h3 className="text-lg font-semibold" style={{ color: '#000000' }}>{label} Budget</h3><span className="font-bold" style={{ color: '#000000' }}>₹{Math.round(current/1000)}K</span></div>
       <input type="range" min={min} max={max} value={current} onChange={(e)=>onChange(Number(e.target.value))} className="mt-3 w-full" />
-      <div className="mt-2 flex justify-between text-sm text-gray-600"><span>₹{Math.round(min/1000)}K</span><span>₹{Math.round(max/100000)} Lakhs</span></div>
-      <p className="mt-3 text-sm text-gray-700">💡 {helper}</p>
+      <div className="mt-2 flex justify-between text-sm" style={{ color: '#1A1A1A' }}><span>₹{Math.round(min/1000)}K</span><span>₹{Math.round(max/100000)} Lakhs</span></div>
+      <p className="mt-3 text-sm" style={{ color: '#000000' }}>💡 {helper}</p>
     </div>
   );
 }
@@ -493,14 +532,14 @@ function MiniCalendar({ year, month, selectedDate, onDateSelect, onClose }: {
   }
 
   return (
-    <div className="mt-4 p-4 bg-white rounded-lg shadow-lg border border-gray-200">
+    <div className="mt-4 p-4 rounded-lg shadow-lg border" style={{ background: '#FFFFFF', borderColor: '#000000', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
       <div className="flex justify-between items-center mb-3">
-        <h4 className="font-semibold text-gray-800">{month} {year}</h4>
-        <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
+        <h4 className="font-semibold" style={{ color: '#000000' }}>{month} {year}</h4>
+        <button onClick={onClose} className="hover:text-gray-700" style={{ color: '#1A1A1A' }}>✕</button>
       </div>
       <div className="grid grid-cols-7 gap-1 text-center text-sm">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-          <div key={day} className="p-2 font-medium text-gray-600">{day}</div>
+          <div key={day} className="p-2 font-medium" style={{ color: '#1A1A1A' }}>{day}</div>
         ))}
         {days.map((day, index) => (
           <button
@@ -509,11 +548,15 @@ function MiniCalendar({ year, month, selectedDate, onDateSelect, onClose }: {
             disabled={!day}
             className={`p-2 text-sm rounded hover:bg-amber-100 ${
               day === selectedDate 
-                ? 'bg-[#4a0000] text-white' 
+                ? 'text-white' 
                 : day 
-                  ? 'text-gray-700 hover:text-[#4a0000]' 
+                  ? 'hover:text-[#000000]' 
                   : 'text-transparent cursor-default'
             }`}
+            style={{
+              backgroundColor: day === selectedDate ? '#000000' : undefined,
+              color: day === selectedDate ? '#000000' : day ? '#000000' : undefined
+            }}
           >
             {day}
           </button>

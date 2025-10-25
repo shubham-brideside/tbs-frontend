@@ -12,7 +12,7 @@ const GlassmorphismCard: React.FC<GlassmorphismCardProps> = ({
   className = '',
   delay = 0
 }) => {
-  const [ref, isVisible] = useScrollReveal<HTMLDivElement>(0.1);
+  const [ref, isVisible] = useScrollReveal(0.1);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const GlassmorphismCard: React.FC<GlassmorphismCardProps> = ({
 
   return (
     <div
-      ref={ref}
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={`glassmorphism-card micro-interaction will-change-transform ${
         shouldAnimate ? 'visible' : 'scroll-reveal'
       } ${className}`}

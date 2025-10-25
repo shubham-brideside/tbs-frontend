@@ -20,7 +20,7 @@ export default function Home() {
     },
     {
       title: "Makeup",
-      img: IMAGES.makeupCategory,
+      img: "https://bridesideimages.blob.core.windows.net/tbs-website-images/WhatsApp Image 2025-10-25 at 13.54.55.jpeg",
       align: "right",
       to: "/photos",
       desc: "Discover beautiful bridal makeup looks for every occasion",
@@ -28,7 +28,7 @@ export default function Home() {
     },
     {
       title: "Planning & Decor",
-      img: "https://bridesideimages.blob.core.windows.net/tbs-website-images/SHREY&MAHIMA_MEHENDI&HALDI1164.jpg",
+      img: "https://bridesideimages.blob.core.windows.net/tbs-website-images/AMMAN_ANNISHA_WEDDING-4551.jpg",
       align: "left",
       to: "/photos",
       desc: "Explore creative decor ideas and planning inspiration",
@@ -43,23 +43,29 @@ export default function Home() {
 
       <HowItWorks />
 
-             <section id="wedding-categories" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20" style={{ backgroundColor: '#F9EAFB' }}>
+             <section id="wedding-categories" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12" style={{ backgroundColor: '#F9F9F9' }}>
           <div className="mx-auto max-w-4xl text-center">
-            <LuxuryHeading 
-              className="text-4xl md:text-6xl font-black tracking-tight"
+            <div className="relative">
+              <AnimatedTextReveal 
+                text="Wedding Categories"
+                className="text-5xl md:text-7xl font-normal leading-tight"
               style={{
-                fontFamily: "'Playfair Display', 'Times New Roman', serif",
-                color: '#4a0000',
+                fontFamily: "'Times New Roman', serif",
+                color: '#000000',
               }}
-            >
-              Wedding Categories
-            </LuxuryHeading>
-            <p className="mt-4 text-lg md:text-xl text-gray-600">Browse through curated collections of wedding inspiration</p>
+                delay={0}
+                duration={80}
+              />
+              <div className="mt-2 h-1 bg-gradient-to-r from-black to-white rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-black to-white rounded-full animate-pulse"></div>
+              </div>
+            </div>
+            <p className="mt-4 text-lg md:text-xl" style={{ color: '#1A1A1A' }}>Browse through curated collections of wedding inspiration</p>
           </div>
 
                <div className="mt-14 grid gap-8">
                  {categories.map((c, i) => (
-                   <div key={i} className="rounded-2xl border p-6 shadow-sm ring-1 ring-black/5 transition-all duration-700 ease-out will-change-transform hover:shadow-xl hover:scale-[1.02]" style={{ backgroundColor: '#F4D9EA' }}>
+                   <div key={i} className="rounded-2xl border p-6 shadow-sm ring-1 transition-all duration-700 ease-out will-change-transform hover:shadow-xl hover:scale-[1.02]" style={{ background: '#FFFFFF', borderColor: 'rgba(209, 213, 219, 0.5)', boxShadow: '0 4px 6px -1px rgba(209, 213, 219, 0.12), 0 2px 4px -1px rgba(209, 213, 219, 0.06)' }}>
               <div
                        className={`group grid items-center gap-8 md:grid-cols-2 ${
                          c.align === "right" ? "md:[&>*:first-child]:order-2" : ""
@@ -70,7 +76,7 @@ export default function Home() {
                            src={c.img} 
                            alt={c.title} 
                            className={`h-80 w-full object-cover transition duration-500 group-hover:scale-110 ${
-                             c.categoryClass === "makeup" ? "object-top" : ""
+                             c.categoryClass === "makeup" ? "object-[center_40%]" : ""
                            }`}
                            onError={(e) => {
                              console.log('Image failed to load:', c.img);
@@ -78,17 +84,17 @@ export default function Home() {
                            }}
                            onLoad={() => console.log('Image loaded successfully:', c.img)}
                          />
-                         <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                        </div>
                        <div className="space-y-4">
                         <AnimatedCategoryHeading 
-                          className={`text-3xl md:text-4xl font-bold category-heading ${c.categoryClass} animated-underline`}
+                          className={`text-3xl md:text-4xl font-normal category-heading ${c.categoryClass} animated-underline`}
+                          style={{ color: '#000000', fontFamily: "'Times New Roman', serif" }}
                         >
                           {c.title}
                         </AnimatedCategoryHeading>
-                         <p className="text-gray-600 text-lg leading-relaxed">{c.desc}</p>
+                         <p className="text-lg leading-relaxed" style={{ color: '#1A1A1A' }}>{c.desc}</p>
                          <div className="pt-4">
-                           <span className="inline-flex items-center text-pink-600 font-semibold group-hover:text-pink-700 transition-colors duration-300">
+                           <span className="inline-flex items-center font-semibold transition-colors duration-300" style={{ color: '#000000' }}>
                              View Gallery 
                              <svg className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -100,21 +106,27 @@ export default function Home() {
                    </div>
             ))}
         </div>
-        <SimpleScrollArrow targetId="latest-blog" />
+        <SimpleScrollArrow targetId="latest-blog" className="mt-4 mb-4" />
       </section>
 
-             <section id="latest-blog" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16" style={{ backgroundColor: '#F9EAFB' }}>
+             <section id="latest-blog" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12" style={{ backgroundColor: '#F9F9F9' }}>
         <div className="mx-auto max-w-4xl text-center">
-          <LuxuryHeading 
-            className="text-4xl md:text-6xl font-black tracking-tight"
+          <div className="relative">
+            <AnimatedTextReveal 
+              text="Latest Blog"
+              className="text-5xl md:text-7xl font-normal leading-tight"
             style={{
-              fontFamily: "'Playfair Display', 'Times New Roman', serif",
-              color: '#4a0000',
+              fontFamily: "'Times New Roman', serif",
+              color: '#000000',
             }}
-          >
-            Latest Blog
-          </LuxuryHeading>
-          <p className="mt-4 text-lg md:text-xl text-gray-600">Expert tips, inspiration, and guides for your perfect wedding</p>
+              delay={0}
+              duration={80}
+            />
+            <div className="mt-2 h-1 bg-gradient-to-r from-black to-white rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-black to-white rounded-full animate-pulse"></div>
+            </div>
+          </div>
+          <p className="mt-4 text-lg md:text-xl" style={{ color: '#1A1A1A' }}>Expert tips, inspiration, and guides for your perfect wedding</p>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
@@ -123,7 +135,7 @@ export default function Home() {
             { title: "Mehndi & Jewelry: Wedding Essentials", badge: "Traditions" },
             { title: "Sangeet Night: Planning the Perfect Celebration", badge: "Events" },
           ].map((b, i) => (
-                   <Link key={i} to="/blog" className="blog-card group overflow-hidden rounded-xl will-change-transform">
+                   <div key={i} className="blog-card group overflow-hidden rounded-xl will-change-transform" style={{ background: '#FFFFFF', borderColor: 'rgba(209, 213, 219, 0.5)', boxShadow: '0 4px 6px -1px rgba(209, 213, 219, 0.12), 0 2px 4px -1px rgba(209, 213, 219, 0.06)', border: '1px solid' }}>
                      <div className="blog-image relative h-40 overflow-hidden">
                        <img
                         src={
@@ -143,21 +155,21 @@ export default function Home() {
                          }}
                          onLoad={() => console.log('Blog image loaded successfully')}
                 />
-                       <span className="blog-badge absolute left-3 top-3 rounded-lg bg-yellow-100/90 px-3 py-1 text-xs font-medium text-amber-700 border border-amber-200">
+                       <span className="blog-badge absolute left-3 top-3 rounded-lg px-3 py-1 text-xs font-medium border" style={{ background: '#FFFFFF', color: '#000000', borderColor: 'rgba(209, 213, 219, 0.5)' }}>
                   {b.badge}
                 </span>
               </div>
                      <div className="blog-card-content p-6">
-                       <h3 className="blog-title font-semibold text-gray-900 text-sm leading-tight">{b.title}</h3>
-                       <p className="blog-description mt-3 text-sm text-gray-600">Read more</p>
-                       <div className="blog-link mt-2 text-sm text-amber-600 font-medium">
+                       <h3 className="blog-title font-normal text-sm leading-tight" style={{ color: '#000000', fontFamily: "'Times New Roman', serif" }}>{b.title}</h3>
+                       <p className="blog-description mt-3 text-sm" style={{ color: '#1A1A1A' }}>Read more</p>
+                       <div className="blog-link mt-2 text-sm font-medium" style={{ color: '#000000' }}>
                          <span>Explore</span>
                          <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                          </svg>
                        </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
         <SimpleScrollArrow targetId="wedding-journey" className="mt-8" />
@@ -169,25 +181,39 @@ export default function Home() {
 
 function HowItWorks() {
   return (
-    <section id="wedding-journey" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-1 pb-4" style={{ backgroundColor: '#F9EAFB' }}>
+    <section id="wedding-journey" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-1 pb-4 relative" style={{ 
+      backgroundImage: "url('https://bridesideimages.blob.core.windows.net/tbs-website-images/WhatsApp Image 2025-10-25 at 15.39.35.jpeg')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}>
+      {/* Background overlay with blue tint effect and blur for aesthetic look */}
+      <div className="absolute inset-0 bg-blue-50/20 backdrop-blur-sm"></div>
+      <div className="relative z-10">
       <div className="mx-auto max-w-4xl text-center">
-        <LuxuryHeading 
-          className="text-4xl md:text-6xl font-black tracking-tight"
+        <div className="relative">
+          <AnimatedTextReveal 
+            text="Your Wedding Journey"
+            className="text-5xl md:text-7xl font-normal leading-tight"
           style={{
-            fontFamily: "'Playfair Display', 'Times New Roman', serif",
-            color: '#4a0000',
+            fontFamily: "'Times New Roman', serif",
+            color: '#000000',
           }}
-        >
-          Your Wedding Journey
-        </LuxuryHeading>
-        <p className="mt-4 text-lg md:text-xl text-gray-600">From the first consultation to your special day, we'll be with you every step of the way</p>
+            delay={0}
+            duration={80}
+          />
+          <div className="mt-2 h-1 bg-gradient-to-r from-black to-white rounded-full overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-black to-white rounded-full animate-pulse"></div>
+          </div>
+        </div>
+        <p className="mt-4 text-lg md:text-xl" style={{ color: '#1A1A1A' }}>From the first consultation to your special day, we'll be with you every step of the way</p>
       </div>
 
       {/* Timeline grid: left/right cards with centered markers */}
       <div className="relative mx-auto mt-14 grid grid-cols-1 lg:grid-cols-[1fr_80px_1fr] gap-10">
         {/* Vertical line spanning entire timeline */}
         <div className="pointer-events-none absolute left-1/2 top-0 bottom-0 hidden lg:block -translate-x-1/2 z-0">
-          <div className="h-full w-1 bg-gradient-to-b from-purple-400 via-pink-400 to-indigo-400" />
+          <div className="h-full w-1" style={{ backgroundColor: '#000000' }} />
         </div>
 
         {/* Step 1 - left */}
@@ -218,6 +244,7 @@ function HowItWorks() {
         <div className="lg:col-start-3" />
       </div>
       <SimpleScrollArrow targetId="wedding-categories" />
+      </div>
     </section>
   );
 }
@@ -246,16 +273,14 @@ function AnimatedHeading({ children }: { children: React.ReactNode }) {
   return (
     <h2
       ref={ref}
-      className={`text-4xl md:text-6xl font-extrabold tracking-tight transform transition-all duration-1000 ease-out ${
+      className={`text-4xl md:text-6xl font-normal tracking-tight transform transition-all duration-1000 ease-out ${
         isVisible 
           ? 'translate-y-0 opacity-100 scale-100' 
           : 'translate-y-8 opacity-0 scale-95'
       }`}
       style={{
-        fontFamily: "'Playfair Display', 'Times New Roman', serif",
-        color: '#4a0000',
-        textShadow: isVisible ? '0 0 20px rgba(74, 0, 0, 0.4)' : 'none',
-        filter: isVisible ? 'drop-shadow(0 4px 8px rgba(74, 0, 0, 0.3))' : 'none'
+        fontFamily: "'Times New Roman', serif",
+        color: '#000000'
       }}
     >
       {children}
@@ -287,24 +312,24 @@ function StepCard({ _number, title, text }: { _number?: number; title: string; t
   return (
     <div 
       ref={ref}
-      className={`rounded-2xl border p-6 shadow-sm ring-1 ring-black/5 transition-all duration-700 ease-out will-change-transform hover:shadow-xl hover:scale-[1.02] ${
+      className={`rounded-2xl border p-6 shadow-sm ring-1 transition-all duration-700 ease-out will-change-transform hover:shadow-xl hover:scale-[1.02] ${
         isVisible 
           ? 'translate-y-0 opacity-100' 
           : 'translate-y-12 opacity-0'
       }`}
-      style={{ backgroundColor: '#F4D9EA' }}
+      style={{ background: '#FFFFFF', borderColor: 'rgba(209, 213, 219, 0.5)', boxShadow: '0 4px 6px -1px rgba(209, 213, 219, 0.12), 0 2px 4px -1px rgba(209, 213, 219, 0.06)' }}
     >
       <AnimatedTextReveal 
         text={title}
-        className="text-4xl md:text-5xl font-extrabold leading-tight"
+        className="text-4xl md:text-5xl font-normal leading-tight"
         style={{
-          fontFamily: "'Playfair Display', 'Times New Roman', serif",
-          color: '#4a0000',
+          fontFamily: "'Times New Roman', serif",
+          color: '#000000',
         }}
         delay={isVisible ? 200 : 0}
         duration={80}
       />
-      <p className="mt-3 max-w-xl text-gray-600">{text}</p>
+      <p className="mt-3 max-w-xl" style={{ color: '#1A1A1A' }}>{text}</p>
     </div>
   );
 }
@@ -312,7 +337,8 @@ function StepCard({ _number, title, text }: { _number?: number; title: string; t
 function Badge({ n }: { n: number }) {
   return (
     <div className="relative z-10">
-      <div className="h-12 w-12 -translate-x-px rounded-full border-4 border-amber-500 bg-gradient-to-br from-amber-400 to-yellow-500 text-amber-900 grid place-items-center font-bold shadow-md">{n}</div>
+      <div className="h-12 w-12 -translate-x-px rounded-full border-4 text-black grid place-items-center font-bold shadow-md" style={{ backgroundColor: '#FFFFFF', borderColor: '#000000' }}>{n}</div>
     </div>
   );
 }
+

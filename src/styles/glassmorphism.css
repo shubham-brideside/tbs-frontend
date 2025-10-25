@@ -159,47 +159,47 @@
 
 /* Photography Category */
 .category-heading.photography {
-  color: #4a0000;
+  color: #000000;
   font-family: "'Playfair Display', 'Times New Roman', serif";
 }
 
 .category-heading.photography::after {
-  background: linear-gradient(90deg, #4a0000, #6a0000);
+  background: linear-gradient(90deg, #6B7280, #000000, #F9F9F9);
 }
 
 .glassmorphism-card:hover .category-heading.photography {
-  color: #4a0000;
-  text-shadow: 0 0 10px rgba(74, 0, 0, 0.3);
+  color: #000000;
+  text-shadow: 0 0 10px rgba(95, 185, 176, 0.3);
 }
 
 /* Makeup Category */
 .category-heading.makeup {
-  color: #4a0000;
+  color: #000000;
   font-family: "'Playfair Display', 'Times New Roman', serif";
 }
 
 .category-heading.makeup::after {
-  background: linear-gradient(90deg, #4a0000, #6a0000);
+  background: linear-gradient(90deg, #6B7280, #000000, #F9F9F9);
 }
 
 .glassmorphism-card:hover .category-heading.makeup {
-  color: #4a0000;
-  text-shadow: 0 0 10px rgba(74, 0, 0, 0.3);
+  color: #000000;
+  text-shadow: 0 0 10px rgba(95, 185, 176, 0.3);
 }
 
 /* Planning & Decor Category */
 .category-heading.planning {
-  color: #4a0000;
+  color: #000000;
   font-family: "'Playfair Display', 'Times New Roman', serif";
 }
 
 .category-heading.planning::after {
-  background: linear-gradient(90deg, #4a0000, #6a0000);
+  background: linear-gradient(90deg, #6B7280, #000000, #F9F9F9);
 }
 
 .glassmorphism-card:hover .category-heading.planning {
-  color: #4a0000;
-  text-shadow: 0 0 10px rgba(74, 0, 0, 0.3);
+  color: #000000;
+  text-shadow: 0 0 10px rgba(95, 185, 176, 0.3);
 }
 
 /* Letter-by-Letter Animation */
@@ -362,7 +362,7 @@
   left: 0;
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, #4a0000, #d97706, #4a0000);
+  background: linear-gradient(90deg, #6B7280, #000000, #F9F9F9);
   border-radius: 2px;
   transition: width 0.8s ease-in-out;
 }

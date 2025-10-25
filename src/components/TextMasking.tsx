@@ -14,7 +14,7 @@ const TextMasking: React.FC<TextMaskingProps> = ({
   animationType = 'masking',
   delay = 0
 }) => {
-  const [ref, isVisible] = useScrollReveal<HTMLHeadingElement>(0.2);
+  const [ref, isVisible] = useScrollReveal(0.2);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const TextMasking: React.FC<TextMaskingProps> = ({
 
   return (
     <h2
-      ref={ref}
+      ref={ref as React.RefObject<HTMLHeadingElement>}
       className={`${className} ${getAnimationClass()} premium-heading ${
         shouldAnimate ? 'visible' : 'scroll-reveal'
       }`}

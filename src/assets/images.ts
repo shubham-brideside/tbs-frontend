@@ -34,13 +34,13 @@ export const IMAGES: Record<ImageKey, string> = {
   shreyMahimaWedding2: "https://bridesideimages.blob.core.windows.net/tbs-website-images/SHREY&MAHIMA_WEDDING-5776.jpg",
 
   // Photography category image
-  photographyCategory: "https://bridesideimages.blob.core.windows.net/tbs-website-images/Notusmanifestingapastelleheng.jpg",
+  photographyCategory: "https://bridesideimages.blob.core.windows.net/tbs-website-images/WhatsApp Image 2025-10-25 at 12.48.12.jpeg",
 
   // Makeup category image
-  makeupCategory: "https://bridesideimages.blob.core.windows.net/tbs-website-images/0a86bc73-db27-41bf-80ed-70ea568a68ab.jpeg",
+  makeupCategory: "https://bridesideimages.blob.core.windows.net/tbs-website-images/IMG_0001-10.jpg",
 
   // Planning & Decor category image
-  planningCategory: "https://bridesideimages.blob.core.windows.net/tbs-website-images/SHREY&MAHIMA_WEDDING-5749.jpg",
+  planningCategory: "https://bridesideimages.blob.core.windows.net/tbs-website-images/WhatsApp%20Image%202025-10-25%20at%2012.47.13.jpeg",
 
   // Blog images
   blogPhotography: "https://bridesideimages.blob.core.windows.net/tbs-website-images/SHREY&MAHIMA_WEDDING-5591.jpg",
@@ -53,7 +53,7 @@ export const IMAGES: Record<ImageKey, string> = {
 
   // Branding (optional)
   // Set this to your provided logo file path (PNG/SVG) placed under public/images/
-  logo: "/images/tbs-logo.png",
+  logo: "https://bridesideimages.blob.core.windows.net/tbs-website-images/heyueye.png",
 
   // Generic fallback - Using Lorem Picsum
   placeholder: "https://picsum.photos/800/600?random=99",
@@ -61,12 +61,8 @@ export const IMAGES: Record<ImageKey, string> = {
 
 // Helper: returns only the hero image paths in order for slideshows
 export const getHeroImages = (): string[] => [
-  // Hero section - 5 wedding images for slideshow
-  "https://bridesideimages.blob.core.windows.net/tbs-website-images/SHREY&MAHIMA_WEDDING-5776.jpg", // First image (existing)
-  "https://bridesideimages.blob.core.windows.net/tbs-website-images/SHREY&MAHIMA_WEDDING-5579.jpg", // Second image
-  "https://bridesideimages.blob.core.windows.net/tbs-website-images/SHREY&MAHIMA_WEDDING-5597.jpg", // Third image (updated)
-  "https://bridesideimages.blob.core.windows.net/tbs-website-images/SHREY&MAHIMA_MEHENDI&HALDI1164.jpg", // Fourth image
-  "https://bridesideimages.blob.core.windows.net/tbs-website-images/SHREY&MAHIMA_WEDDING-5714.jpg", // Fifth image
+  // Hero section - single image
+  "https://bridesideimages.blob.core.windows.net/tbs-website-images/WhatsApp Image 2025-10-25 at 16.24.38.jpeg",
 ];
 
 

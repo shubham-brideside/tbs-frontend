@@ -15,7 +15,7 @@
   left: 0;
   width: 0;
   height: 3px;
-  background: linear-gradient(to right, #4a0000, #d97706, #4a0000);
+  background: linear-gradient(to right, #6B7280, #000000, #F9F9F9);
   border-radius: 2px;
   transition: width 0.8s ease-in-out;
 }
@@ -59,7 +59,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #d97706, #f59e0b, #d97706);
+  background: linear-gradient(90deg, rgba(209, 213, 219, 0.8), #F9F9F9, rgba(209, 213, 219, 0.8));
   border-radius: 1px;
   transition: width 0.8s ease-out;
   animation-delay: 0.3s;
@@ -83,8 +83,8 @@
 
 /* Soft glow effect for headings */
 .luxury-heading.animate-in {
-  text-shadow: 0 2px 4px rgba(74, 0, 0, 0.15);
-  filter: drop-shadow(0 2px 4px rgba(74, 0, 0, 0.1));
+  text-shadow: 0 2px 4px rgba(209, 213, 219, 0.15);
+  filter: drop-shadow(0 2px 4px rgba(209, 213, 219, 0.1));
   font-weight: 900;
 }
 

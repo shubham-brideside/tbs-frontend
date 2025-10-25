@@ -106,7 +106,7 @@ export default function SimpleScrollArrow({ targetId, className = "" }: SimpleSc
           {/* Simple downward double chevron */}
           <div className="flex flex-col items-center space-y-1">
             <svg 
-              className="w-6 h-6 text-gray-600 group-hover:text-gray-800 transition-colors duration-300" 
+              className="w-6 h-6 text-gray-800 group-hover:text-gray-900 transition-colors duration-300" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -114,7 +114,7 @@ export default function SimpleScrollArrow({ targetId, className = "" }: SimpleSc
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
             <svg 
-              className="w-6 h-6 text-gray-600 group-hover:text-gray-800 transition-colors duration-300" 
+              className="w-6 h-6 text-gray-800 group-hover:text-gray-900 transition-colors duration-300" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"

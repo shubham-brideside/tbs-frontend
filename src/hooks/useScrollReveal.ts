@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
 // Custom hook for scroll-triggered animations
-export const useScrollReveal = <T extends HTMLElement = HTMLElement>(threshold = 0.1) => {
+export const useScrollReveal = (threshold = 0.1) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<T>(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

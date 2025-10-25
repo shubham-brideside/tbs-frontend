@@ -86,17 +86,16 @@ export default function HeroSection() {
       {/* Logo now in Navbar; keep hero clean */}
 
       <div className="relative mx-auto flex h-full max-w-7xl flex-col items-start justify-center px-4 sm:px-6 lg:px-8">
-        <span className="mb-4 inline-block rounded-full border border-purple-300 bg-white/70 px-3 py-1 text-xs font-medium" style={{ color: '#4a0000' }}>
+        <span className="mb-4 inline-block rounded-full border px-5 py-3 text-lg font-medium" style={{ color: '#000000', borderColor: 'rgba(209, 213, 219, 0.5)', background: '#FFFFFF' }}>
           India's Trusted Wedding Planning Platform
         </span>
         <AnimatedTextReveal 
-          text="Every bride needs a side —"
-          className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl"
+          text="Every Bride Needs A Side"
+          className="text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
           style={{
-            fontFamily: "'Playfair Display', 'Times New Roman', serif",
-            color: '#4a0000',
-            textShadow: '0 0 20px rgba(74, 0, 0, 0.4)',
-            filter: 'drop-shadow(0 4px 8px rgba(74, 0, 0, 0.3))'
+            fontFamily: "'Times New Roman', serif",
+            fontWeight: 'normal',
+            color: '#FFFFFF'
           }}
           delay={200}
           duration={80}
@@ -104,7 +103,12 @@ export default function HeroSection() {
         <AnimatedTextReveal 
           text="The Bride Side"
           className="mt-4 max-w-2xl text-base sm:text-lg font-bold"
-          style={{ color: '#4a0000', fontSize: '1.5rem', fontWeight: '800' }}
+          style={{ 
+            fontFamily: "'Playfair Display', 'Times New Roman', serif",
+            fontWeight: 'bold',
+            color: '#FFFFFF', 
+            fontSize: '1.5rem'
+          }}
           delay={3500}
           duration={80}
         />
@@ -139,20 +143,22 @@ export default function HeroSection() {
                   className={
                     "inline-flex items-center justify-center rounded-md px-6 py-3 font-semibold shadow " +
                     (isValid && !submitting
-                      ? "bg-gradient-to-r from-amber-100 to-amber-200 hover:from-amber-200 hover:to-amber-300 text-maroon-800 border border-maroon-300 hover:border-maroon-400"
+                      ? "hover:opacity-95 text-white border"
                       : "bg-gray-300 cursor-not-allowed text-gray-500")
                   }
                   style={{
-                    color: isValid && !submitting ? '#4a0000' : undefined
+                    backgroundColor: isValid && !submitting ? '#000000' : undefined,
+                    borderColor: isValid && !submitting ? '#000000' : undefined,
+                    boxShadow: isValid && !submitting ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : undefined
                   }}
                 >
             {submitting ? "Submitting..." : "Start My Wedding Planning"}
           </button>
         </div>
         {!isValid && phone.length > 0 && (
-          <p className="mt-1 text-sm text-purple-700">Enter a valid 10-digit number</p>
+          <p className="mt-1 text-sm" style={{ color: '#1A1A1A' }}>Enter a valid 10-digit number</p>
         )}
-        <div className="mt-8 text-sm" style={{ color: '#4a0000' }}>
+        <div className="mt-8 text-sm" style={{ color: '#1A1A1A' }}>
           <span className="font-semibold">10K+ </span>Happy Couples | <span className="font-semibold">50K+ </span>
           Wedding Photos | <span className="font-semibold">500+ </span>Real Weddings
         </div>
