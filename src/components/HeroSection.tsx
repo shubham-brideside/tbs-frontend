@@ -70,19 +70,22 @@ export default function HeroSection() {
       {/* Slideshow Images */}
       {images.map((imgSrc, index) => (
         <img
-          key={index}
-          src={imgSrc}
-          onError={(e) => {
-            e.currentTarget.src = "https://picsum.photos/800/600?random=99";
-          }}
-          alt={`Wedding Image ${index + 1}`}
-          className={`absolute inset-0 h-full w-full object-cover scale-105 transition-opacity duration-1000 ease-in-out ${
-            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            transform: 'translateX(100px) scale(1.05)'
-          }}
-        />
+         key={index}
+         src={imgSrc}
+         onError={(e) => {
+           e.currentTarget.src = "https://picsum.photos/800/600?random=99";
+         }}
+         alt={`Wedding Image ${index + 1}`}
+         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
+           index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+         }`}
+         style={{
+           transform: 'translateX(100px) scale(1.05)',
+           objectPosition: 'right center'
+         }}
+       />
+      
+      
       ))}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-ivory-50/30 to-cream-50/30" />
 
