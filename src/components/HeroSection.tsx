@@ -76,17 +76,17 @@ export default function HeroSection() {
             e.currentTarget.src = "https://picsum.photos/800/600?random=99";
           }}
           alt={`Wedding Image ${index + 1}`}
-          className={`absolute top-0 left-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
+          className={`absolute top-0  h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
-            left: '200px',
-            width: 'calc(100% + 200px)',
+            left: '300px',
+            width: 'calc(100% + 100px)',
             transform: 'scale(1.05)'
           }}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-ivory-50/30 to-cream-50/30" />
+      <div className="absolute bg-gradient-to-br from-white/40 via-ivory-50/30 to-cream-50/30" />
 
       {/* Logo now in Navbar; keep hero clean */}
 
@@ -95,7 +95,7 @@ export default function HeroSection() {
           India's Trusted Wedding Planning Platform
         </span>
         <AnimatedTextReveal 
-          text="Every Bride Needs A Side"
+          text="Every Bride Needs aaa Side"
           className="text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
           style={{
             fontFamily: "'Times New Roman', serif",
