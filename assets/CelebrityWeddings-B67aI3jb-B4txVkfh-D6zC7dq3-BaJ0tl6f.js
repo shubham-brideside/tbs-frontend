@@ -1,1 +1,0 @@
-import{v as e}from"./index-DthU7r7X.js";const t=()=>e.jsx("div",{className:"min-h-screen bg-gray-50",children:e.jsxs("div",{className:"container mx-auto px-4 py-8",children:[e.jsx("h1",{className:"text-3xl font-bold text-gray-900 mb-8",children:"Celebrity Weddings"}),e.jsx("p",{className:"text-gray-600",children:"This page is under construction."})]})});export{t as default};
