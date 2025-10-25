@@ -40,7 +40,6 @@ export default function Home() {
     <>
       <HeroSection />
       <SimpleScrollArrow targetId="wedding-journey" />
-
       <HowItWorks />
 
              <section id="wedding-categories" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12" style={{ backgroundColor: '#F9F9F9' }}>
