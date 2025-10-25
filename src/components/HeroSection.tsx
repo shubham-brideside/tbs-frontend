@@ -76,12 +76,13 @@ export default function HeroSection() {
             e.currentTarget.src = "https://picsum.photos/800/600?random=99";
           }}
           alt={`Wedding Image ${index + 1}`}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
+          className={`absolute top-0 left-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
-            transform: 'translateX(200px) scale(1.05)',
-            willChange: 'transform'
+            left: '200px',
+            width: 'calc(100% + 200px)',
+            transform: 'scale(1.05)'
           }}
         />
       ))}
