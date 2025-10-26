@@ -229,23 +229,56 @@ export default function PlanningForm() {
                 <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>When do you plan to have your wedding?</h2>
                 <div className="mt-4 flex gap-2">
                   {[2025,2026,2027].map((y)=> (
-                    <button key={y} onClick={()=>setYear(y)} className={"rounded-full px-4 py-2 " + (year===y?"":"")} style={{ background: year===y ? '#000000' : '#FFFFFF', borderColor: '#000000', color: year===y ? '#FFFFFF' : '#000000', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>{y}</button>
+                    <button 
+                      key={y} 
+                      onClick={()=>!dateNotConfirmed && setYear(y)} 
+                      disabled={dateNotConfirmed}
+                      className={"rounded-full px-4 py-2 " + (year===y?"":"") + (dateNotConfirmed ? " opacity-50 cursor-not-allowed" : "")} 
+                      style={{ 
+                        background: year===y && !dateNotConfirmed ? '#000000' : '#FFFFFF', 
+                        borderColor: '#000000', 
+                        color: year===y && !dateNotConfirmed ? '#FFFFFF' : '#000000', 
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' 
+                      }}
+                    >
+                      {y}
+                    </button>
                   ))}
                 </div>
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <select value={month} onChange={(e)=>setMonth(e.target.value)} className="rounded border px-3 py-2" style={{ borderColor: '#000000', background: '#FFFFFF', color: '#000000' }}>
+                  <select 
+                    value={month} 
+                    onChange={(e)=>setMonth(e.target.value)} 
+                    disabled={dateNotConfirmed}
+                    className={"rounded border px-3 py-2" + (dateNotConfirmed ? " opacity-50 cursor-not-allowed" : "")} 
+                    style={{ borderColor: '#000000', background: dateNotConfirmed ? '#F3F4F6' : '#FFFFFF', color: '#000000' }}
+                  >
                     {"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ").map((m)=>(<option key={m} value={m}>{m}</option>))}
                   </select>
                   <input 
                     value={selectedDate ? selectedDate.toString() : ""} 
                     onChange={(e)=>setDateRange(e.target.value)} 
                     placeholder="Select your date" 
-                    onClick={() => setShowCalendar(!showCalendar)}
+                    onClick={() => !dateNotConfirmed && setShowCalendar(!showCalendar)}
+                    disabled={dateNotConfirmed}
                     readOnly
-                    className="rounded border px-3 py-2 cursor-pointer" style={{ borderColor: '#000000', background: '#FFFFFF', color: '#000000' }} 
+                    className={"rounded border px-3 py-2" + (dateNotConfirmed ? " opacity-50 cursor-not-allowed" : " cursor-pointer")} 
+                    style={{ borderColor: '#000000', background: dateNotConfirmed ? '#F3F4F6' : '#FFFFFF', color: '#000000' }} 
                   />
                 </div>
-                <label className="mt-3 flex items-center gap-2"><input type="checkbox" checked={dateNotConfirmed} onChange={(e)=>setDateNotConfirmed(e.target.checked)} /> The wedding date isn't confirmed yet</label>
+                <label className="mt-3 flex items-center gap-2">
+                  <input 
+                    type="checkbox" 
+                    checked={dateNotConfirmed} 
+                    onChange={(e)=>{
+                      setDateNotConfirmed(e.target.checked);
+                      if (e.target.checked) {
+                        setShowCalendar(false);
+                      }
+                    }} 
+                  /> 
+                  The wedding date isn't confirmed yet
+                </label>
                 
                 {showCalendar && (
                   <MiniCalendar 
@@ -268,16 +301,28 @@ export default function PlanningForm() {
             {step === 3 && (
               <div>
                 <h2 className="mt-2 text-3xl font-extrabold" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>How many guests are you expecting?</h2>
-                <input value={guests} onChange={(e)=>{
-                  const value = e.target.value.replace(/\D/g,"");
-                  setGuests(value);
-                }} placeholder="e.g., 150" className="mt-4 w-full rounded border px-3 py-3" style={{ borderColor: '#000000', background: '#FFFFFF', color: '#000000' }} />
+                <input 
+                  value={guests} 
+                  onChange={(e)=>{
+                    const value = e.target.value.replace(/\D/g,"");
+                    setGuests(value);
+                  }} 
+                  placeholder="e.g., 150" 
+                  disabled={guestsNotDecided}
+                  className={"mt-4 w-full rounded border px-3 py-3" + (guestsNotDecided ? " opacity-50 cursor-not-allowed" : "")} 
+                  style={{ borderColor: '#000000', background: guestsNotDecided ? '#F3F4F6' : '#FFFFFF', color: '#000000' }} 
+                />
                 <p className="mt-2 text-sm" style={{ color: '#1A1A1A' }}>💡 Mention the total guests of your wedding day</p>
                 <label className="mt-3 flex items-center gap-2">
                   <input 
                     type="checkbox" 
                     checked={guestsNotDecided} 
-                    onChange={(e)=>setGuestsNotDecided(e.target.checked)} 
+                    onChange={(e)=>{
+                      setGuestsNotDecided(e.target.checked);
+                      if (e.target.checked) {
+                        setGuests("");
+                      }
+                    }} 
                   /> 
                   Not Decided yet
                 </label>
