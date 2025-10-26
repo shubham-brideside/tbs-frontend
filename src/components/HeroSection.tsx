@@ -80,52 +80,51 @@ export default function HeroSection() {
             e.currentTarget.src = "https://picsum.photos/800/600?random=99";
           }}
           alt={`Wedding Image ${index + 1}`}
-          className={`absolute top-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
-          style={{
-            left: '30px',
-            width: 'calc(100% + 100px)',
-            transform: 'scale(1.05)'
-          }}
         />
       ))}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-ivory-50/30 to-cream-50/30" />
 
       {/* Logo now in Navbar; keep hero clean */}
 
-      <div className="relative mx-auto flex h-full max-w-7xl flex-col items-start justify-center px-4 sm:px-6 lg:px-8">
-        <span className="mb-3 sm:mb-4 inline-block rounded-full border px-3 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm md:text-base font-medium" style={{ color: '#000000', borderColor: 'rgba(209, 213, 219, 0.5)', background: '#FFFFFF' }}>
+      <div className="relative mx-auto flex h-full w-full max-w-7xl flex-col items-start justify-center px-4 sm:px-6 lg:px-8">
+        <span className="mb-3 sm:mb-4 inline-block rounded-full border px-3 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm md:text-base font-medium whitespace-nowrap" style={{ color: '#000000', borderColor: 'rgba(209, 213, 219, 0.5)', background: '#FFFFFF' }}>
           India's Trusted Wedding Platform
         </span>
-        <AnimatedTextReveal 
-          text="Every Bride Needs a Side"
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-tight"
-          style={{
-            fontFamily: "'Times New Roman', serif",
-            fontWeight: 'normal',
-            color: '#FFFFFF'
-          }}
-          delay={200}
-          duration={80}
-        />
-        <AnimatedTextReveal 
-          text="The Bride Side"
-          className="mt-2 sm:mt-4 max-w-2xl text-xl sm:text-2xl md:text-3xl font-bold"
-          style={{ 
-            fontFamily: "'Playfair Display', 'Times New Roman', serif",
-            fontWeight: 'bold',
-            color: '#FFFFFF'
-          }}
-          delay={3500}
-          duration={80}
-        />
-        <div className="mt-4 sm:mt-6 md:mt-8 flex w-full flex-col items-stretch gap-2 sm:gap-3">
-          <div className="flex w-full max-w-xl items-stretch gap-2">
+        <div className="w-full max-w-full overflow-hidden">
+          <AnimatedTextReveal 
+            text="Every Bride Needs a Side"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-tight break-words"
+            style={{
+              fontFamily: "'Times New Roman', serif",
+              fontWeight: 'normal',
+              color: '#FFFFFF'
+            }}
+            delay={200}
+            duration={80}
+          />
+        </div>
+        <div className="w-full max-w-full overflow-hidden mt-2 sm:mt-4">
+          <AnimatedTextReveal 
+            text="The Bride Side"
+            className="max-w-2xl text-xl sm:text-2xl md:text-3xl font-bold break-words"
+            style={{ 
+              fontFamily: "'Playfair Display', 'Times New Roman', serif",
+              fontWeight: 'bold',
+              color: '#FFFFFF'
+            }}
+            delay={3500}
+            duration={80}
+          />
+        </div>
+        <div className="mt-4 sm:mt-6 md:mt-8 flex w-full max-w-xl flex-col items-stretch gap-2 sm:gap-3">
+          <div className="flex w-full items-stretch gap-2">
             <select
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className="rounded border bg-white px-2 sm:px-3 py-2 sm:py-3 text-sm"
+              className="rounded border bg-white px-2 sm:px-3 py-2 sm:py-3 text-sm flex-shrink-0"
             >
               <option value="+91">+91</option>
               <option value="+1">+1</option>
@@ -134,7 +133,7 @@ export default function HeroSection() {
             <input
               inputMode="numeric"
               maxLength={10}
-              placeholder="Enter 10-digit phone"
+              placeholder="Enter phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
               onKeyDown={(e) => {
@@ -142,14 +141,14 @@ export default function HeroSection() {
                   onStart();
                 }
               }}
-              className="flex-1 rounded border px-3 py-2 sm:py-3 text-sm sm:text-base"
+              className="flex-1 min-w-0 rounded border px-3 py-2 sm:py-3 text-sm sm:text-base"
             />
           </div>
           <button
             onClick={onStart}
             disabled={!isValid || submitting}
             className={
-              "w-full sm:w-auto inline-flex items-center justify-center rounded-md px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow " +
+              "w-full inline-flex items-center justify-center rounded-md px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow whitespace-nowrap " +
               (isValid && !submitting
                 ? "hover:opacity-95 text-white border"
                 : "bg-gray-300 cursor-not-allowed text-gray-500")
@@ -160,18 +159,18 @@ export default function HeroSection() {
               boxShadow: isValid && !submitting ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : undefined
             }}
           >
-            {submitting ? "Submitting..." : "Start My Wedding Planning"}
+            {submitting ? "Submitting..." : "Start Wedding Planning"}
           </button>
         </div>
         {!isValid && phone.length > 0 && (
-          <p className="mt-1 text-xs sm:text-sm" style={{ color: '#1A1A1A' }}>Enter a valid 10-digit number</p>
+          <p className="mt-1 text-xs sm:text-sm w-full max-w-xl" style={{ color: '#1A1A1A' }}>Enter a valid 10-digit number</p>
         )}
-        <div className="mt-4 sm:mt-6 md:mt-8 text-xs sm:text-sm flex flex-wrap gap-x-2 gap-y-1" style={{ color: '#1A1A1A' }}>
-          <span><span className="font-semibold">10K+</span> Happy Couples</span>
+        <div className="mt-4 sm:mt-6 md:mt-8 text-xs sm:text-sm flex flex-wrap gap-x-2 gap-y-1 w-full max-w-xl" style={{ color: '#1A1A1A' }}>
+          <span className="whitespace-nowrap"><span className="font-semibold">10K+</span> Happy Couples</span>
           <span className="hidden sm:inline">|</span>
-          <span><span className="font-semibold">50K+</span> Wedding Photos</span>
+          <span className="whitespace-nowrap"><span className="font-semibold">50K+</span> Wedding Photos</span>
           <span className="hidden sm:inline">|</span>
-          <span><span className="font-semibold">500+</span> Real Weddings</span>
+          <span className="whitespace-nowrap"><span className="font-semibold">500+</span> Real Weddings</span>
         </div>
       </div>
       </section>
