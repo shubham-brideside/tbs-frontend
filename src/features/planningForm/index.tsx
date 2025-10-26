@@ -188,7 +188,7 @@ export default function PlanningForm() {
                     <button
                       key={b.key}
                       onClick={() => {
-                        if (b.key === "not_listed") { setCity("Not listed"); setStep(2); return; }
+                        if (b.key === "not_listed") { setCity("Not listed"); return; }
                         setShowCityPicker(true);
                       }}
                       className={"rounded-2xl border p-6 text-center shadow-sm hover:shadow " + (city && city!=="Not listed"?"":"")} style={{ background: '#FFFFFF', borderColor: '#000000', color: '#000000', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}
@@ -200,7 +200,7 @@ export default function PlanningForm() {
                 <div className="mt-8 flex justify-between"><button onClick={()=>setStep(0)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button><button disabled={!city} onClick={()=>setStep(2)} className={"rounded px-6 py-2 text-white " + (city?"hover:opacity-95":"bg-gray-300")} style={{ backgroundColor: city ? '#000000' : undefined, borderColor: city ? '#000000' : undefined }}>Next</button></div>
 
                 {showCityPicker && (
-                  <CityPicker onClose={()=>setShowCityPicker(false)} onSelect={(c)=>{setCity(c); setShowCityPicker(false); setStep(2);}} />
+                  <CityPicker onClose={()=>setShowCityPicker(false)} onSelect={(c)=>{setCity(c); setShowCityPicker(false);}} />
                 )}
               </div>
             )}
@@ -237,8 +237,6 @@ export default function PlanningForm() {
                       setSelectedDate(date);
                       setDateRange(date.toString());
                       setShowCalendar(false);
-                      // Automatically proceed to next step after date selection
-                      setStep(3);
                     }}
                     onClose={() => setShowCalendar(false)}
                   />
@@ -254,10 +252,6 @@ export default function PlanningForm() {
                 <input value={guests} onChange={(e)=>{
                   const value = e.target.value.replace(/\D/g,"");
                   setGuests(value);
-                  // Auto-advance to next step if 3-digit number is entered
-                  if (value.length === 3) {
-                    setStep(4);
-                  }
                 }} placeholder="e.g., 150" className="mt-4 w-full rounded border px-3 py-3" style={{ borderColor: '#000000', background: '#FFFFFF', color: '#000000' }} />
                 <p className="mt-2 text-sm" style={{ color: '#1A1A1A' }}>💡 Mention the total guests of your wedding day</p>
                 <label className="mt-3 flex items-center gap-2">
@@ -279,40 +273,16 @@ export default function PlanningForm() {
                   {selectedCategories.photography && (
                     <BudgetSlider label="Photography" min={100000} max={5000000} value={budget.photography} onChange={(v)=>{
                       setBudget(b=>({...b, photography:v}));
-                      // Check if all selected categories have budgets set
-                      const newBudget = {...budget, photography: v};
-                      const allBudgetsSet = Object.keys(selectedCategories).every(key => 
-                        !selectedCategories[key as CategoryKey] || newBudget[key as keyof typeof newBudget] !== undefined
-                      );
-                      if (allBudgetsSet) {
-                        setStep(5);
-                      }
                     }} helper="Professional photography and videography services" />
                   )}
                   {selectedCategories.makeup && (
                     <BudgetSlider label="Makeup" min={40000} max={600000} value={budget.makeup} onChange={(v)=>{
                       setBudget(b=>({...b, makeup:v}));
-                      // Check if all selected categories have budgets set
-                      const newBudget = {...budget, makeup: v};
-                      const allBudgetsSet = Object.keys(selectedCategories).every(key => 
-                        !selectedCategories[key as CategoryKey] || newBudget[key as keyof typeof newBudget] !== undefined
-                      );
-                      if (allBudgetsSet) {
-                        setStep(5);
-                      }
                     }} helper="Bridal makeup and beauty services for all events" />
                   )}
                   {selectedCategories.decor && (
                     <BudgetSlider label="Planning & Decor" min={300000} max={10000000} value={budget.decor} onChange={(v)=>{
                       setBudget(b=>({...b, decor:v}));
-                      // Check if all selected categories have budgets set
-                      const newBudget = {...budget, decor: v};
-                      const allBudgetsSet = Object.keys(selectedCategories).every(key => 
-                        !selectedCategories[key as CategoryKey] || newBudget[key as keyof typeof newBudget] !== undefined
-                      );
-                      if (allBudgetsSet) {
-                        setStep(5);
-                      }
                     }} helper="Complete wedding planning and decoration" />
                   )}
                 </div>
