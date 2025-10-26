@@ -92,14 +92,6 @@ export default function Home() {
                           {c.title}
                         </AnimatedCategoryHeading>
                          <p className="text-lg leading-relaxed" style={{ color: '#1A1A1A' }}>{c.desc}</p>
-                         <div className="pt-4">
-                           <span className="inline-flex items-center font-semibold transition-colors duration-300" style={{ color: '#000000' }}>
-                             View Gallery 
-                             <svg className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                             </svg>
-                           </span>
-                </div>
                 </div>
               </div>
                    </div>
@@ -160,18 +152,11 @@ export default function Home() {
               </div>
                      <div className="blog-card-content p-6">
                        <h3 className="blog-title font-normal text-sm leading-tight" style={{ color: '#000000', fontFamily: "'Times New Roman', serif" }}>{b.title}</h3>
-                       <p className="blog-description mt-3 text-sm" style={{ color: '#1A1A1A' }}>Read more</p>
-                       <div className="blog-link mt-2 text-sm font-medium" style={{ color: '#000000' }}>
-                         <span>Explore</span>
-                         <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                         </svg>
-                       </div>
               </div>
             </div>
           ))}
         </div>
-        <SimpleScrollArrow targetId="wedding-journey" className="mt-8" />
+        <SimpleScrollArrow scrollToTop={true} className="mt-8" />
       </section>
     </>
   );

@@ -4,6 +4,7 @@ import { getHeroImages } from "../assets/images";
 import AnimatedHeading from "./AnimatedHeading";
 import AnimatedTextReveal from "./AnimatedTextReveal";
 import FloatingElements from "./FloatingElements";
+import Loader from "./Loader";
 import "../styles/animations.css";
 
 export default function HeroSection() {
@@ -66,8 +67,11 @@ export default function HeroSection() {
     }
   }
   return (
-    <section className="relative h-[80vh] min-h-[520px] w-full overflow-hidden">
-      {/* Slideshow Images */}
+    <>
+      {submitting && <Loader />}
+      
+      <section className="relative h-[80vh] min-h-[520px] w-full overflow-hidden">
+        {/* Slideshow Images */}
       {images.map((imgSrc, index) => (
         <img
           key={index}
@@ -76,17 +80,17 @@ export default function HeroSection() {
             e.currentTarget.src = "https://picsum.photos/800/600?random=99";
           }}
           alt={`Wedding Image ${index + 1}`}
-          className={`absolute top-0  h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
+          className={`absolute top-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
             index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
-            left: '300px',
+            left: '30px',
             width: 'calc(100% + 100px)',
             transform: 'scale(1.05)'
           }}
         />
       ))}
-      <div className="absolute bg-gradient-to-br from-white/40 via-ivory-50/30 to-cream-50/30" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-ivory-50/30 to-cream-50/30" />
 
       {/* Logo now in Navbar; keep hero clean */}
 
@@ -95,8 +99,8 @@ export default function HeroSection() {
           India's Trusted Wedding Planning Platform
         </span>
         <AnimatedTextReveal 
-          text="Every Bride Needs aaa Side"
-          className="text-6xl font-extrabold tracking-tight sm:text-7xl md:text-8xl"
+          text="Every Bride Needs a Side"
+          className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl"
           style={{
             fontFamily: "'Times New Roman', serif",
             fontWeight: 'normal',
@@ -168,7 +172,7 @@ export default function HeroSection() {
           Wedding Photos | <span className="font-semibold">500+ </span>Real Weddings
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 }
-

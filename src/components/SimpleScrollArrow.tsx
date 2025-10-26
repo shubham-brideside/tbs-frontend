@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from 'react';
 
 interface SimpleScrollArrowProps {
-  targetId: string;
+  targetId?: string;
   className?: string;
+  scrollToTop?: boolean; // If true, scrolls to top instead of target
 }
 
-export default function SimpleScrollArrow({ targetId, className = "" }: SimpleScrollArrowProps) {
+export default function SimpleScrollArrow({ targetId, className = "", scrollToTop = false }: SimpleScrollArrowProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
-  const [hoverTimer, setHoverTimer] = useState<NodeJS.Timeout | null>(null);
-  const [scrollTimer, setScrollTimer] = useState<NodeJS.Timeout | null>(null);
+  const [hoverTimer, setHoverTimer] = useState<number | null>(null);
+  const [scrollTimer, setScrollTimer] = useState<number | null>(null);
 
   const handleClick = () => {
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({
+    if (scrollToTop) {
+      // Scroll to top of the page
+      window.scrollTo({
+        top: 0,
         behavior: 'smooth',
-        block: 'start',
       });
+    } else {
+      // Scroll to target element
+      const targetElement = targetId ? document.getElementById(targetId) : null;
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
     }
   };
 
@@ -103,8 +113,8 @@ export default function SimpleScrollArrow({ targetId, className = "" }: SimpleSc
             boxShadow: isScrolling ? '0 25px 50px rgba(0,0,0,0.25)' : undefined
           }}
         >
-          {/* Simple downward double chevron */}
-          <div className="flex flex-col items-center space-y-1">
+          {/* Simple double chevron */}
+          <div className="flex flex-col items-center space-y-1" style={{ transform: scrollToTop ? 'rotate(180deg)' : 'none' }}>
             <svg 
               className="w-6 h-6 text-gray-800 group-hover:text-gray-900 transition-colors duration-300" 
               fill="none" 

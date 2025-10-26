@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { IMAGES } from "../../assets/images";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 type CategoryKey = "photography" | "makeup" | "decor";
 
@@ -9,6 +10,7 @@ export default function PlanningForm() {
   const navigate = useNavigate();
   const contactFromQuery = params.get("phone") || "";
   const dealIdFromQuery = params.get("dealId") || "";
+  const [isLoading, setIsLoading] = useState(true);
   const [step, setStep] = useState(0); // 0: categories, 1..5 steps
   const [selectedCategories, setSelectedCategories] = useState<Record<CategoryKey, boolean>>({
     photography: false,
@@ -33,6 +35,15 @@ export default function PlanningForm() {
   const [submitting, setSubmitting] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
 
+  useEffect(() => {
+    // Simulate initial page loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const canProceedCategories = useMemo(
     () => Object.values(selectedCategories).some(Boolean),
     [selectedCategories]
@@ -43,6 +54,10 @@ export default function PlanningForm() {
   }
 
   const stepsTotal = 5;
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (showThankYou) {
     return (
@@ -103,9 +118,12 @@ export default function PlanningForm() {
   }
 
   return (
-    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2" style={{ backgroundColor: '#F9F9F9' }}>
-      {/* Left: wedding image background */}
-      <div className="hidden lg:flex relative items-end justify-center p-10 overflow-hidden">
+    <>
+      {submitting && <Loader />}
+      
+      <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2" style={{ backgroundColor: '#F9F9F9' }}>
+        {/* Left: wedding image background */}
+        <div className="hidden lg:flex relative items-end justify-center p-10 overflow-hidden">
         <img
           src="https://bridesideimages.blob.core.windows.net/tbs-website-images/WhatsApp Image 2025-10-25 at 16.19.44.jpeg"
           alt="Beautiful Wedding Photography"
@@ -416,7 +434,8 @@ export default function PlanningForm() {
           </>
         )}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 
