@@ -70,7 +70,7 @@ export default function HeroSection() {
     <>
       {submitting && <Loader />}
       
-      <section className="relative h-[80vh] min-h-[520px] w-full overflow-hidden">
+      <section className="relative h-[100vh] sm:h-[85vh] md:h-[80vh] min-h-[600px] sm:min-h-[520px] w-full overflow-hidden">
         {/* Slideshow Images */}
       {images.map((imgSrc, index) => (
         <img
@@ -95,12 +95,12 @@ export default function HeroSection() {
       {/* Logo now in Navbar; keep hero clean */}
 
       <div className="relative mx-auto flex h-full max-w-7xl flex-col items-start justify-center px-4 sm:px-6 lg:px-8">
-        <span className="mb-4 inline-block rounded-full border px-5 py-3 text-lg font-medium" style={{ color: '#000000', borderColor: 'rgba(209, 213, 219, 0.5)', background: '#FFFFFF' }}>
-          India's Trusted Wedding Planning Platform
+        <span className="mb-3 sm:mb-4 inline-block rounded-full border px-3 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm md:text-base font-medium" style={{ color: '#000000', borderColor: 'rgba(209, 213, 219, 0.5)', background: '#FFFFFF' }}>
+          India's Trusted Wedding Platform
         </span>
         <AnimatedTextReveal 
           text="Every Bride Needs a Side"
-          className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-tight"
           style={{
             fontFamily: "'Times New Roman', serif",
             fontWeight: 'normal',
@@ -111,22 +111,21 @@ export default function HeroSection() {
         />
         <AnimatedTextReveal 
           text="The Bride Side"
-          className="mt-4 max-w-2xl text-base sm:text-lg font-bold"
+          className="mt-2 sm:mt-4 max-w-2xl text-xl sm:text-2xl md:text-3xl font-bold"
           style={{ 
             fontFamily: "'Playfair Display', 'Times New Roman', serif",
             fontWeight: 'bold',
-            color: '#FFFFFF', 
-            fontSize: '1.5rem'
+            color: '#FFFFFF'
           }}
           delay={3500}
           duration={80}
         />
-        <div className="mt-8 flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+        <div className="mt-4 sm:mt-6 md:mt-8 flex w-full flex-col items-stretch gap-2 sm:gap-3">
           <div className="flex w-full max-w-xl items-stretch gap-2">
             <select
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className="rounded border bg-white px-3 py-3 text-sm"
+              className="rounded border bg-white px-2 sm:px-3 py-2 sm:py-3 text-sm"
             >
               <option value="+91">+91</option>
               <option value="+1">+1</option>
@@ -135,7 +134,7 @@ export default function HeroSection() {
             <input
               inputMode="numeric"
               maxLength={10}
-              placeholder="Enter your 10-digit phone"
+              placeholder="Enter 10-digit phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
               onKeyDown={(e) => {
@@ -143,33 +142,36 @@ export default function HeroSection() {
                   onStart();
                 }
               }}
-              className="flex-1 rounded border px-3 py-3"
+              className="flex-1 rounded border px-3 py-2 sm:py-3 text-sm sm:text-base"
             />
           </div>
-                <button
-                  onClick={onStart}
-                  disabled={!isValid || submitting}
-                  className={
-                    "inline-flex items-center justify-center rounded-md px-6 py-3 font-semibold shadow " +
-                    (isValid && !submitting
-                      ? "hover:opacity-95 text-white border"
-                      : "bg-gray-300 cursor-not-allowed text-gray-500")
-                  }
-                  style={{
-                    backgroundColor: isValid && !submitting ? '#000000' : undefined,
-                    borderColor: isValid && !submitting ? '#000000' : undefined,
-                    boxShadow: isValid && !submitting ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : undefined
-                  }}
-                >
+          <button
+            onClick={onStart}
+            disabled={!isValid || submitting}
+            className={
+              "w-full sm:w-auto inline-flex items-center justify-center rounded-md px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold shadow " +
+              (isValid && !submitting
+                ? "hover:opacity-95 text-white border"
+                : "bg-gray-300 cursor-not-allowed text-gray-500")
+            }
+            style={{
+              backgroundColor: isValid && !submitting ? '#000000' : undefined,
+              borderColor: isValid && !submitting ? '#000000' : undefined,
+              boxShadow: isValid && !submitting ? '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' : undefined
+            }}
+          >
             {submitting ? "Submitting..." : "Start My Wedding Planning"}
           </button>
         </div>
         {!isValid && phone.length > 0 && (
-          <p className="mt-1 text-sm" style={{ color: '#1A1A1A' }}>Enter a valid 10-digit number</p>
+          <p className="mt-1 text-xs sm:text-sm" style={{ color: '#1A1A1A' }}>Enter a valid 10-digit number</p>
         )}
-        <div className="mt-8 text-sm" style={{ color: '#1A1A1A' }}>
-          <span className="font-semibold">10K+ </span>Happy Couples | <span className="font-semibold">50K+ </span>
-          Wedding Photos | <span className="font-semibold">500+ </span>Real Weddings
+        <div className="mt-4 sm:mt-6 md:mt-8 text-xs sm:text-sm flex flex-wrap gap-x-2 gap-y-1" style={{ color: '#1A1A1A' }}>
+          <span><span className="font-semibold">10K+</span> Happy Couples</span>
+          <span className="hidden sm:inline">|</span>
+          <span><span className="font-semibold">50K+</span> Wedding Photos</span>
+          <span className="hidden sm:inline">|</span>
+          <span><span className="font-semibold">500+</span> Real Weddings</span>
         </div>
       </div>
       </section>
