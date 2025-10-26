@@ -93,27 +93,29 @@ export default function HeroSection() {
         <span className="mb-3 sm:mb-4 inline-block rounded-full border px-3 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm md:text-base font-medium whitespace-nowrap" style={{ color: '#000000', borderColor: 'rgba(209, 213, 219, 0.5)', background: '#FFFFFF' }}>
           India's Trusted Wedding Platform
         </span>
-        <div className="w-full max-w-full overflow-hidden">
+        <div className="w-full">
           <AnimatedTextReveal 
             text="Every Bride Needs a Side"
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-tight break-words"
             style={{
               fontFamily: "'Times New Roman', serif",
               fontWeight: 'normal',
-              color: '#FFFFFF'
+              color: '#FFFFFF',
+              maxWidth: '100%'
             }}
             delay={200}
             duration={80}
           />
         </div>
-        <div className="w-full max-w-full overflow-hidden mt-2 sm:mt-4">
+        <div className="w-full mt-2 sm:mt-4">
           <AnimatedTextReveal 
             text="The Bride Side"
-            className="max-w-2xl text-xl sm:text-2xl md:text-3xl font-bold break-words"
+            className="text-xl sm:text-2xl md:text-3xl font-bold break-words"
             style={{ 
               fontFamily: "'Playfair Display', 'Times New Roman', serif",
               fontWeight: 'bold',
-              color: '#FFFFFF'
+              color: '#FFFFFF',
+              maxWidth: '100%'
             }}
             delay={3500}
             duration={80}
