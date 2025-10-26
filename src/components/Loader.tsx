@@ -29,16 +29,21 @@ export default function Loader() {
 
   return (
     <div 
-      className="fixed inset-0 flex items-center justify-center"
+      className="fixed inset-0 flex items-center justify-center p-4"
       style={{ 
         zIndex: 9999, 
         backgroundColor: 'rgba(255, 255, 255, 0.95)',
       }}
     >
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-full max-w-lg">
         <dotlottie-wc 
           src="https://lottie.host/ac14a46c-13ee-48cb-a593-a4762ebd47cb/hObNAbInEG.lottie" 
-          style={{ width: '500px', height: '500px' }}
+          style={{ 
+            width: '100%', 
+            height: 'auto',
+            maxWidth: '500px',
+            aspectRatio: '1 / 1'
+          }}
           autoplay
           loop
         />
