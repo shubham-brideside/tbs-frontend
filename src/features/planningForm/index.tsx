@@ -197,6 +197,25 @@ export default function PlanningForm() {
                     </button>
                   ))}
                 </div>
+                
+                {city && (
+                  <div className="mt-6 p-4 rounded-xl border-2 border-black bg-white">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium" style={{ color: '#1A1A1A' }}>Selected Venue:</p>
+                        <p className="text-2xl font-bold mt-1" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>{city}</p>
+                      </div>
+                      <button 
+                        onClick={() => setCity("")}
+                        className="text-sm px-3 py-1 rounded border hover:bg-gray-50"
+                        style={{ borderColor: '#000000', color: '#000000' }}
+                      >
+                        Change
+                      </button>
+                    </div>
+                  </div>
+                )}
+                
                 <div className="mt-8 flex justify-between"><button onClick={()=>setStep(0)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button><button disabled={!city} onClick={()=>setStep(2)} className={"rounded px-6 py-2 text-white " + (city?"hover:opacity-95":"bg-gray-300")} style={{ backgroundColor: city ? '#000000' : undefined, borderColor: city ? '#000000' : undefined }}>Next</button></div>
 
                 {showCityPicker && (
