@@ -25,7 +25,7 @@ export default function Footer() {
                 <h4 className="text-sm font-bold text-gray-800 mb-2">Our Address</h4>
                 <div className="text-sm text-gray-800 space-y-1">
                   <div className="font-bold text-gray-800">Saket</div>
-                  <div>Lane no.5, Westernmarg,</div>
+                  <div>Lane no.5, Westend Marg,</div>
                   <div>Saidulajaib Extention,</div>
                   <div>New Delhi-110030</div>
                 </div>
