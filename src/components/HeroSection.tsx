@@ -38,33 +38,50 @@ export default function HeroSection() {
     if (submitting) return;
     setSubmitting(true);
     const contact = `${code}${phone}`;
+    
+    // Navigate immediately with phone number
+    const q = new URLSearchParams({ phone: contact });
+    
+    // Make API call in background with timeout
+    const apiCallPromise = fetch(
+      "https://thebrideside-agdnavgxhhcffpby.centralindia-01.azurewebsites.net/api/deals/init",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        body: JSON.stringify({ contact_number: contact }),
+      }
+    )
+      .then(async (res) => {
+        try {
+          const data = await res.json();
+          if (data && (data.id || data.deal_id || data.dealId)) {
+            const dealId = String(data.id || data.deal_id || data.dealId);
+            return dealId;
+          }
+        } catch (_) {}
+        return null;
+      })
+      .catch(() => null);
+    
+    // Race between API call and 1 second timeout
+    const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 1000));
+    
     try {
-      const res = await fetch(
-        "https://thebrideside-agdnavgxhhcffpby.centralindia-01.azurewebsites.net/api/deals/init",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            accept: "application/json",
-          },
-          body: JSON.stringify({ contact_number: contact }),
-        }
-      );
-      let dealId: string | undefined;
-      try {
-        const data = await res.json();
-        if (data && (data.id || data.deal_id || data.dealId)) {
-          dealId = String(data.id || data.deal_id || data.dealId);
-        }
-      } catch (_) {}
-      const q = new URLSearchParams({ phone: contact });
-      if (dealId) q.set("dealId", dealId);
-      navigate(`/start-planning?${q.toString()}`);
+      const dealId = await Promise.race([apiCallPromise, timeoutPromise]);
+      if (dealId) {
+        q.set("dealId", dealId);
+      }
     } catch (e) {
-      navigate("/start-planning");
+      // Continue even if API fails
     } finally {
       setSubmitting(false);
     }
+    
+    // Navigate with or without dealId
+    navigate(`/start-planning?${q.toString()}`);
   }
   return (
     <>
