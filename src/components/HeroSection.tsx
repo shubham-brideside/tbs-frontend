@@ -39,48 +39,53 @@ export default function HeroSection() {
     setSubmitting(true);
     const contact = `${code}${phone}`;
     
-    // Navigate immediately with phone number
     const q = new URLSearchParams({ phone: contact });
     
-    // Make API call in background with timeout
-    const apiCallPromise = fetch(
-      "https://thebrideside-agdnavgxhhcffpby.centralindia-01.azurewebsites.net/api/deals/init",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-        body: JSON.stringify({ contact_number: contact }),
-      }
-    )
-      .then(async (res) => {
-        try {
-          const data = await res.json();
-          if (data && (data.id || data.deal_id || data.dealId)) {
-            const dealId = String(data.id || data.deal_id || data.dealId);
-            return dealId;
-          }
-        } catch (_) {}
-        return null;
-      })
-      .catch(() => null);
-    
-    // Race between API call and 1 second timeout
-    const timeoutPromise = new Promise<null>((resolve) => setTimeout(() => resolve(null), 1000));
-    
     try {
-      const dealId = await Promise.race([apiCallPromise, timeoutPromise]);
-      if (dealId) {
-        q.set("dealId", dealId);
+      console.log("📤 Calling POST /api/deals/init from hero section");
+      // Make API call with 3 second timeout (increased from 1s)
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      
+      const res = await fetch(
+        "https://thebrideside-agdnavgxhhcffpby.centralindia-01.azurewebsites.net/api/deals/init",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            accept: "application/json",
+          },
+          body: JSON.stringify({ contact_number: contact }),
+          signal: controller.signal,
+        }
+      );
+      
+      clearTimeout(timeoutId);
+      
+      try {
+        const data = await res.json();
+        console.log("✅ API Response:", data);
+        if (data && (data.id || data.deal_id || data.dealId)) {
+          const dealId = String(data.id || data.deal_id || data.dealId);
+          q.set("dealId", dealId);
+          console.log("✅ Got dealId:", dealId);
+        } else {
+          console.log("⚠️ No dealId in response");
+        }
+      } catch (parseError) {
+        console.log("⚠️ Failed to parse API response");
       }
     } catch (e) {
-      // Continue even if API fails
+      if ((e as Error).name === 'AbortError') {
+        console.log("⏱️ API call timed out after 3 seconds");
+      } else {
+        console.error("❌ API call failed:", e);
+      }
     } finally {
       setSubmitting(false);
     }
     
-    // Navigate with or without dealId
+    console.log("🔗 Navigating to:", `/start-planning?${q.toString()}`);
     navigate(`/start-planning?${q.toString()}`);
   }
   return (
