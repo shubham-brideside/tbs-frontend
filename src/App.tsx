@@ -3,6 +3,7 @@ import { AppRoutes } from "./routes";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
+import FloatingContactButton from "./components/FloatingContactButton";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         </Suspense>
       </main>
       <Footer />
+      <FloatingContactButton />
     </div>
   );
 }
