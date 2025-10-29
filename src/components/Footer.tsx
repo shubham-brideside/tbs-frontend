@@ -85,7 +85,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t pt-6">
-          <p className="text-sm text-gray-800">© {new Date().getFullYear()} TheBrideSide.in. All rights reserved.</p>
+          <p className="text-sm text-gray-800">© {new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })).getFullYear()} TheBrideSide.in. All rights reserved.</p>
         </div>
       </div>
     </footer>

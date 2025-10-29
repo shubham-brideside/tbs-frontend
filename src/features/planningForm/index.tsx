@@ -19,10 +19,14 @@ export default function PlanningForm() {
   });
   const [city, setCity] = useState<string>("");
   const [showCityPicker, setShowCityPicker] = useState(false);
-  const [year, setYear] = useState<number | null>(2025);
+  const [year, setYear] = useState<number | null>(() => {
+    const istDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    return istDate.getFullYear();
+  });
   const [month, setMonth] = useState<string>(() => {
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return monthNames[new Date().getMonth()];
+    const istDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    return monthNames[istDate.getMonth()];
   });
   const [dateRange, setDateRange] = useState<string>("");
   const [dateNotConfirmed, setDateNotConfirmed] = useState(false);
