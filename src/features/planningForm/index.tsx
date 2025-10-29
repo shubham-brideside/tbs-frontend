@@ -10,6 +10,16 @@ export default function PlanningForm() {
   const navigate = useNavigate();
   const contactFromQuery = params.get("phone") || "";
   const dealIdFromQuery = params.get("dealId") || "";
+  
+  // Debug: Log query params on mount
+  useEffect(() => {
+    console.log("📋 Planning Form Query Params:", {
+      phone: contactFromQuery,
+      dealId: dealIdFromQuery,
+      hasPhone: !!contactFromQuery,
+      hasDealId: !!dealIdFromQuery,
+    });
+  }, []);
   const [isLoading, setIsLoading] = useState(true);
   const [step, setStep] = useState(0); // 0: categories, 1..5 steps
   const [selectedCategories, setSelectedCategories] = useState<Record<CategoryKey, boolean>>({
@@ -424,8 +434,10 @@ export default function PlanningForm() {
                     };
                     try {
                       if (dealIdFromQuery) {
+                        console.log("📤 Calling PUT /api/deals/{id}/details with dealId:", dealIdFromQuery);
                         const detailsPayload = { name, categories: catObjs };
-                        await fetch(
+                        console.log("📦 Payload:", detailsPayload);
+                        const response = await fetch(
                           `https://thebrideside-agdnavgxhhcffpby.centralindia-01.azurewebsites.net/api/deals/${dealIdFromQuery}/details`,
                           {
                             method: "PUT",
@@ -436,9 +448,12 @@ export default function PlanningForm() {
                             body: JSON.stringify(detailsPayload),
                           }
                         );
+                        console.log("✅ PUT /api/deals/{id}/details response:", response.status, response.statusText);
                       } else {
+                        console.log("📤 No dealId found, calling POST /api/deals/init");
+                        console.log("📦 Contact number:", contactFromQuery);
                         // fallback: create if no id present
-                        await fetch(
+                        const response = await fetch(
                           "https://thebrideside-agdnavgxhhcffpby.centralindia-01.azurewebsites.net/api/deals/init",
                           {
                             method: "POST",
@@ -449,8 +464,10 @@ export default function PlanningForm() {
                             body: JSON.stringify({ contact_number: contactFromQuery || undefined }),
                           }
                         );
+                        console.log("✅ POST /api/deals/init response:", response.status, response.statusText);
                       }
                     } catch(e) {
+                      console.error("❌ API call failed:", e);
                       // ignore errors; you can surface a toast if needed
                     } finally {
                       setSubmitting(false);
