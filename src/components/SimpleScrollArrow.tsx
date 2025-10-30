@@ -98,13 +98,13 @@ export default function SimpleScrollArrow({ targetId, className = "", scrollToTo
   }, [scrollTimer]);
 
   return (
-    <div className={`flex justify-center mt-12 ${className}`}>
+    <div className={`flex justify-center ${className}`}>
       <div className="relative">
         <button
           onClick={handleClick}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className={`group flex items-center justify-center p-3 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 ${
+          className={`group flex items-center justify-center p-2 md:p-3 rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 ${
             isScrolling ? 'scale-125 shadow-2xl' : ''
           }`}
           style={{
@@ -114,9 +114,9 @@ export default function SimpleScrollArrow({ targetId, className = "", scrollToTo
           }}
         >
           {/* Simple double chevron */}
-          <div className="flex flex-col items-center space-y-1" style={{ transform: scrollToTop ? 'rotate(180deg)' : 'none' }}>
+          <div className="flex flex-col items-center space-y-0.5 md:space-y-1" style={{ transform: scrollToTop ? 'rotate(180deg)' : 'none' }}>
             <svg 
-              className="w-6 h-6 text-gray-800 group-hover:text-gray-900 transition-colors duration-300" 
+              className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-gray-800 group-hover:text-gray-900 transition-colors duration-300" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -124,7 +124,7 @@ export default function SimpleScrollArrow({ targetId, className = "", scrollToTo
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
             <svg 
-              className="w-6 h-6 text-gray-800 group-hover:text-gray-900 transition-colors duration-300" 
+              className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-gray-800 group-hover:text-gray-900 transition-colors duration-300" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
