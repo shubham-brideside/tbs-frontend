@@ -1,24 +1,29 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Loader from "./Loader";
 
 export default function FloatingContactButton() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("+91");
   const [submitting, setSubmitting] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const isValid = useMemo(() => /^\d{10}$/.test(phone.trim()), [phone]);
+  
+  // Hide button on start-planning page
+  const isOnPlanningPage = location.pathname === "/start-planning";
 
-  // Show tooltip briefly on mount
+  // Show tooltip briefly on mount (only if not on planning page)
   useEffect(() => {
+    if (isOnPlanningPage) return;
     const timer = setTimeout(() => {
       setShowTooltip(true);
       setTimeout(() => setShowTooltip(false), 3000);
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isOnPlanningPage]);
 
   async function handleSubmit() {
     if (!isValid || submitting) return;
@@ -75,6 +80,11 @@ export default function FloatingContactButton() {
     
     console.log("🔗 Navigating to:", `/start-planning?${q.toString()}`);
     navigate(`/start-planning?${q.toString()}`);
+  }
+
+  // Don't render button on planning page
+  if (isOnPlanningPage) {
+    return <>{submitting && <Loader />}</>;
   }
 
   return (
