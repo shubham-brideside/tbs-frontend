@@ -121,7 +121,7 @@ export default function FloatingContactButton() {
             onClick={() => setIsOpen(true)}
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
-            className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 group"
+            className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 group"
             style={{
               backgroundColor: "#000000",
               color: "#FFFFFF",
@@ -137,7 +137,7 @@ export default function FloatingContactButton() {
             
             {/* Phone Icon */}
             <svg
-              className="w-6 h-6 sm:w-7 sm:h-7 relative z-10 transform group-hover:rotate-12 transition-transform duration-300"
+              className="w-5 h-5 sm:w-7 sm:h-7 relative z-10 transform group-hover:rotate-12 transition-transform duration-300"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
