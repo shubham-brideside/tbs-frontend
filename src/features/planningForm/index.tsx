@@ -28,6 +28,7 @@ export default function PlanningForm() {
     decor: false,
   });
   const [city, setCity] = useState<string>("");
+  const [manualVenue, setManualVenue] = useState<string>("");
   const [showCityPicker, setShowCityPicker] = useState(false);
   const [selectedCitySection, setSelectedCitySection] = useState<string | null>(null);
   const [year, setYear] = useState<number | null>(() => {
@@ -235,7 +236,7 @@ export default function PlanningForm() {
                     <button
                       key={b.key}
                       onClick={() => {
-                        if (b.key === "not_listed") { setCity("Not listed"); return; }
+                        if (b.key === "not_listed") { setCity("Not listed"); setManualVenue(""); return; }
                         setSelectedCitySection(b.key);
                         setShowCityPicker(true);
                       }}
@@ -246,7 +247,7 @@ export default function PlanningForm() {
                   ))}
                 </div>
                 
-                {city && (
+                {city && city !== "Not listed" && (
                   <div className="mt-6 p-4 rounded-xl border-2 border-black bg-white">
                     <div className="flex items-center justify-between">
                       <div>
@@ -254,7 +255,7 @@ export default function PlanningForm() {
                         <p className="text-2xl font-bold mt-1" style={{ color: '#000000', fontFamily: "'Playfair Display', 'Times New Roman', serif" }}>{city}</p>
                       </div>
                       <button 
-                        onClick={() => setCity("")}
+                        onClick={() => { setCity(""); setManualVenue(""); }}
                         className="text-sm px-3 py-1 rounded border hover:bg-gray-50"
                         style={{ borderColor: '#000000', color: '#000000' }}
                       >
@@ -263,8 +264,40 @@ export default function PlanningForm() {
                     </div>
                   </div>
                 )}
+
+                {city === "Not listed" && (
+                  <div className="mt-6 p-4 rounded-xl border-2 border-black bg-white">
+                    <label className="block text-sm font-medium" style={{ color: '#1A1A1A' }}>Enter your city/venue</label>
+                    <input
+                      value={manualVenue}
+                      onChange={(e)=>setManualVenue(e.target.value)}
+                      placeholder="Type your venue or city"
+                      className="mt-2 w-full rounded border px-3 py-3"
+                      style={{ borderColor: '#000000', background: '#FFFFFF', color: '#000000' }}
+                    />
+                    <div className="flex justify-end mt-3">
+                      <button 
+                        onClick={() => { setCity(""); setManualVenue(""); }}
+                        className="text-sm px-3 py-1 rounded border hover:bg-gray-50"
+                        style={{ borderColor: '#000000', color: '#000000' }}
+                      >
+                        Change selection
+                      </button>
+                    </div>
+                  </div>
+                )}
                 
-                <div className="mt-8 flex justify-between"><button onClick={()=>setStep(0)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button><button disabled={!city} onClick={()=>setStep(2)} className={"rounded px-6 py-2 text-white " + (city?"hover:opacity-95":"bg-gray-300")} style={{ backgroundColor: city ? '#000000' : undefined, borderColor: city ? '#000000' : undefined }}>Next</button></div>
+                <div className="mt-8 flex justify-between">
+                  <button onClick={()=>setStep(0)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button>
+                  <button 
+                    disabled={!city || (city === "Not listed" && !manualVenue.trim())}
+                    onClick={()=>setStep(2)} 
+                    className={"rounded px-6 py-2 text-white " + ((city && (city !== "Not listed" || manualVenue.trim()))?"hover:opacity-95":"bg-gray-300")} 
+                    style={{ backgroundColor: (city && (city !== "Not listed" || manualVenue.trim())) ? '#000000' : undefined, borderColor: (city && (city !== "Not listed" || manualVenue.trim())) ? '#000000' : undefined }}
+                  >
+                    Next
+                  </button>
+                </div>
 
                 {showCityPicker && (
                   <CityPicker 
@@ -457,7 +490,7 @@ export default function PlanningForm() {
                     const eventDate = deriveDate();
                     const catObjs = selectedNames.map((n)=>({
                       name: n,
-                      venue: city || undefined,
+                      venue: (city === "Not listed" ? manualVenue : city) || undefined,
                       budget:
                         n === "Photography" ? budget.photography :
                         n === "Makeup" ? budget.makeup :
