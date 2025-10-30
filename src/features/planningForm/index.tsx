@@ -29,6 +29,7 @@ export default function PlanningForm() {
   });
   const [city, setCity] = useState<string>("");
   const [showCityPicker, setShowCityPicker] = useState(false);
+  const [selectedCitySection, setSelectedCitySection] = useState<string | null>(null);
   const [year, setYear] = useState<number | null>(() => {
     const istDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
     return istDate.getFullYear();
@@ -57,6 +58,38 @@ export default function PlanningForm() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Clear selected date if it becomes invalid when month/year changes
+  useEffect(() => {
+    if (!selectedDate || !year || !month || dateNotConfirmed) return;
+    
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthIndex = monthNames.indexOf(month);
+    const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+    
+    // Check if selected date exists in the new month (e.g., Feb doesn't have day 31)
+    if (selectedDate > daysInMonth) {
+      setSelectedDate(null);
+      setDateRange("");
+      return;
+    }
+    
+    // Check if the date is in the past
+    const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    const todayYear = today.getFullYear();
+    const todayMonth = today.getMonth();
+    const todayDate = today.getDate();
+    
+    const isPast = 
+      year < todayYear ||
+      (year === todayYear && monthIndex < todayMonth) ||
+      (year === todayYear && monthIndex === todayMonth && selectedDate < todayDate);
+    
+    if (isPast) {
+      setSelectedDate(null);
+      setDateRange("");
+    }
+  }, [year, month, selectedDate, dateNotConfirmed]);
 
   const canProceedCategories = useMemo(
     () => Object.values(selectedCategories).some(Boolean),
@@ -203,6 +236,7 @@ export default function PlanningForm() {
                       key={b.key}
                       onClick={() => {
                         if (b.key === "not_listed") { setCity("Not listed"); return; }
+                        setSelectedCitySection(b.key);
                         setShowCityPicker(true);
                       }}
                       className={"rounded-2xl border p-6 text-center shadow-sm hover:shadow " + (city && city!=="Not listed"?"":"")} style={{ background: '#FFFFFF', borderColor: '#000000', color: '#000000', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}
@@ -233,7 +267,11 @@ export default function PlanningForm() {
                 <div className="mt-8 flex justify-between"><button onClick={()=>setStep(0)} className="rounded border px-4 py-2" style={{ borderColor: '#000000', color: '#000000' }}>Back</button><button disabled={!city} onClick={()=>setStep(2)} className={"rounded px-6 py-2 text-white " + (city?"hover:opacity-95":"bg-gray-300")} style={{ backgroundColor: city ? '#000000' : undefined, borderColor: city ? '#000000' : undefined }}>Next</button></div>
 
                 {showCityPicker && (
-                  <CityPicker onClose={()=>setShowCityPicker(false)} onSelect={(c)=>{setCity(c); setShowCityPicker(false);}} />
+                  <CityPicker 
+                    onClose={()=>{setShowCityPicker(false); setSelectedCitySection(null);}} 
+                    onSelect={(c)=>{setCity(c); setShowCityPicker(false); setSelectedCitySection(null);}} 
+                    defaultSection={selectedCitySection}
+                  />
                 )}
               </div>
             )}
@@ -494,77 +532,139 @@ export default function PlanningForm() {
   );
 }
 
-function CityPicker({ onClose, onSelect }:{ onClose: ()=>void; onSelect:(city:string)=>void }){
-  const sections: Array<{ title: string; cities: string[] }> = [
+function CityPicker({ onClose, onSelect, defaultSection }: { onClose: () => void; onSelect: (city: string) => void; defaultSection?: string | null }) {
+  const sections: Array<{ title: string; cities: string[]; key: string }> = [
     {
       title: "Top Cities",
+      key: "top",
       cities: [
-        "All Cities","Delhi NCR","Mumbai","Bangalore","Hyderabad","Chennai","Pune","Lucknow","Jaipur","Kolkata","Chandigarh"
+        "Delhi NCR","Mumbai","Bangalore","Hyderabad","Chennai","Pune","Lucknow","Jaipur","Kolkata","Chandigarh"
       ],
     },
     {
       title: "Popular Cities",
+      key: "popular",
       cities: [
         "Gurgaon","Goa","Udaipur","Jim Corbett","Indore","Agra","Kanpur","Ahmedabad","Navi Mumbai","Kochi"
       ],
     },
     {
       title: "Other Cities",
+      key: "other",
       cities: [
         "Ludhiana","Jodhpur","Patna","Ranchi","Agra","Amritsar","Rishikesh","Varanasi","Nainital","Alwar","Shimla","Srinagar","Mysore","Coimbatore","Bhopal","Indore","Patiala","Surat","Ahmedabad","Nagpur","Jammu","Mount Abu","Mahabalipuram","Darjeeling","Bhubaneswar","Tirupati","Guwahati","Pondicherry","Bikaner","Vishakhapatnam","Kottayam","Kumarakom","Ranthambhore","Dehradun","Thane","Vadodara","Raipur"
       ],
     },
     {
       title: "States",
+      key: "states",
       cities: [
         "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal"
       ],
     },
-    { title: "International Cities", cities: ["Dubai","Thailand","Bali","Abu Dhabi","Vietnam"] },
+    { title: "International Cities", key: "intl", cities: ["Dubai","Thailand","Bali","Abu Dhabi","Vietnam"] },
   ];
 
+  // Filter sections based on defaultSection - show only the selected section
+  const filteredSections = defaultSection 
+    ? sections.filter(sec => sec.key === defaultSection)
+    : sections;
+
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 p-4 sm:p-10" onClick={onClose}>
-      <div className="mx-auto max-w-5xl rounded-2xl bg-white p-6" onClick={(e)=>e.stopPropagation()}>
-        <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">Select City</h3>
-          <button onClick={onClose} className="rounded border px-3 py-1" style={{ color: '#000000', borderColor: '#000000' }}>Close</button>
-        </div>
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-y-6 gap-x-16">
-          {sections.map(sec => (
-            <div
-              key={sec.title}
-              className={
-                "min-w-0 " +
-                (sec.title === "Other Cities" ? "pr-4 " : "") +
-                (sec.title === "States" ? "pl-4 " : "")
-              }
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+      style={{ 
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        backdropFilter: "blur(4px)",
+      }}
+      onClick={onClose}
+    >
+      <div 
+        className="relative w-full max-w-2xl rounded-3xl bg-white shadow-2xl overflow-hidden"
+        style={{ 
+          maxHeight: "90vh",
+          overflowY: "auto",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="sticky top-0 z-10 bg-white border-b px-6 py-4 flex items-center justify-between" style={{ borderColor: "#E5E7EB" }}>
+          <h3 
+            className="text-2xl font-bold"
+            style={{ 
+              color: '#000000',
+              fontFamily: "'Playfair Display', 'Times New Roman', serif"
+            }}
+          >
+            Select City
+          </h3>
+          <button 
+            onClick={onClose} 
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-all duration-200"
+            aria-label="Close"
+          >
+            <svg
+              className="w-5 h-5 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <h4 className="font-semibold" style={{ color: '#000000' }}>{sec.title}</h4>
-              {sec.title === "Other Cities" ? (
-                <div className="mt-2 grid grid-cols-2 gap-x-8">
-                  <div className="space-y-2 pr-2">
-                    {sec.cities.slice(0, Math.ceil(sec.cities.length/2)).map(c => (
-                      <button key={c} className="block text-left hover:underline break-words" onClick={()=>onSelect(c)}>{c}</button>
-                    ))}
-                  </div>
-                  <div className="space-y-2 pl-2">
-                    {sec.cities.slice(Math.ceil(sec.cities.length/2)).map(c => (
-                      <button key={c} className="block text-left hover:underline break-words" onClick={()=>onSelect(c)}>{c}</button>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <ul className="mt-2 space-y-2 pr-2">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        {/* Content */}
+        <div className="p-6 sm:p-8">
+          {filteredSections.map(sec => {
+            return (
+              <div
+                key={sec.title}
+                id={`city-section-${sec.key}`}
+                className="w-full"
+              >
+                <h4 
+                  className="text-lg font-semibold mb-4 pb-2 border-b"
+                  style={{ 
+                    color: '#000000',
+                    borderColor: "#E5E7EB",
+                    fontFamily: "'Playfair Display', 'Times New Roman', serif"
+                  }}
+                >
+                  {sec.title}
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {sec.cities.map(c => (
-                    <li key={c}>
-                      <button className="text-left hover:underline break-words" onClick={()=>onSelect(c)}>{c}</button>
-                    </li>
+                    <button
+                      key={c}
+                      className="w-full text-left px-4 py-3 rounded-xl border transition-all duration-200 group active:scale-[0.98]"
+                      style={{ 
+                        borderColor: "#E5E7EB",
+                        color: '#000000'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#000000';
+                        e.currentTarget.style.color = '#FFFFFF';
+                        e.currentTarget.style.borderColor = '#000000';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '';
+                        e.currentTarget.style.color = '#000000';
+                        e.currentTarget.style.borderColor = '#E5E7EB';
+                      }}
+                      onClick={() => onSelect(c)}
+                    >
+                      {c}
+                    </button>
                   ))}
-                </ul>
-              )}
-            </div>
-          ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -595,6 +695,20 @@ function MiniCalendar({ year, month, selectedDate, onDateSelect, onClose }: {
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
   const firstDayOfMonth = new Date(year, monthIndex, 1).getDay();
   
+  // Get today's date in IST timezone
+  const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+  const todayYear = today.getFullYear();
+  const todayMonth = today.getMonth();
+  const todayDate = today.getDate();
+  
+  // Helper function to check if a date is in the past
+  const isPastDate = (day: number): boolean => {
+    if (year < todayYear) return true;
+    if (year === todayYear && monthIndex < todayMonth) return true;
+    if (year === todayYear && monthIndex === todayMonth && day < todayDate) return true;
+    return false;
+  };
+  
   const days = [];
   // Add empty cells for days before the first day of the month
   for (let i = 0; i < firstDayOfMonth; i++) {
@@ -615,26 +729,31 @@ function MiniCalendar({ year, month, selectedDate, onDateSelect, onClose }: {
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
           <div key={day} className="p-2 font-medium" style={{ color: '#1A1A1A' }}>{day}</div>
         ))}
-        {days.map((day, index) => (
-          <button
-            key={index}
-            onClick={() => day && onDateSelect(day)}
-            disabled={!day}
-            className={`p-2 text-sm rounded hover:bg-amber-100 ${
-              day === selectedDate 
-                ? 'text-white' 
-                : day 
-                  ? 'hover:text-[#000000]' 
-                  : 'text-transparent cursor-default'
-            }`}
-            style={{
-              backgroundColor: day === selectedDate ? '#000000' : undefined,
-              color: day === selectedDate ? '#000000' : day ? '#000000' : undefined
-            }}
-          >
-            {day}
-          </button>
-        ))}
+        {days.map((day, index) => {
+          const isPast = day !== null && isPastDate(day);
+          return (
+            <button
+              key={index}
+              onClick={() => day && !isPast && onDateSelect(day)}
+              disabled={!day || isPast}
+              className={`p-2 text-sm rounded ${
+                !day 
+                  ? 'text-transparent cursor-default' 
+                  : isPast
+                    ? 'opacity-40 cursor-not-allowed bg-gray-100'
+                    : day === selectedDate
+                      ? 'text-white'
+                      : 'hover:bg-amber-100 hover:text-[#000000]'
+              }`}
+              style={{
+                backgroundColor: day === selectedDate ? '#000000' : undefined,
+                color: day === selectedDate ? '#FFFFFF' : day && !isPast ? '#000000' : undefined
+              }}
+            >
+              {day}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
