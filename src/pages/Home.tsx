@@ -165,7 +165,7 @@ export default function Home() {
 
 function HowItWorks() {
   return (
-    <section id="wedding-journey" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 md:py-7 lg:py-9 relative" style={{ 
+    <section id="wedding-journey" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 md:py-7 lg:py-9 relative" style={{ 
       backgroundImage: "url('https://bridesideimages.blob.core.windows.net/tbs-website-images/WhatsApp Image 2025-10-25 at 15.39.35.jpeg')",
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -178,7 +178,7 @@ function HowItWorks() {
           <div className="relative">
             <AnimatedTextReveal 
               text="Your Wedding Journey"
-              className="text-3xl md:text-5xl lg:text-6xl font-normal leading-tight"
+              className="text-2xl md:text-4xl lg:text-5xl font-normal leading-tight"
               style={{
                 fontFamily: "'Times New Roman', serif",
                 color: '#000000',
@@ -190,11 +190,11 @@ function HowItWorks() {
             <div className="h-full bg-gradient-to-r from-black to-white rounded-full animate-pulse"></div>
           </div>
         </div>
-        <p className="mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ color: '#1A1A1A' }}>From the first consultation to your special day, we'll be with you every step of the way</p>
+        <p className="mt-2 md:mt-4 text-sm md:text-lg lg:text-xl" style={{ color: '#1A1A1A' }}>From the first consultation to your special day, we'll be with you every step of the way</p>
       </div>
 
       {/* Timeline grid: left/right cards with centered markers */}
-      <div className="relative mx-auto mt-5 md:mt-7 lg:mt-9 grid grid-cols-1 lg:grid-cols-[1fr_80px_1fr] gap-4 md:gap-5 lg:gap-7">
+      <div className="relative mx-auto max-w-6xl mt-6 md:mt-10 lg:mt-14 grid grid-cols-1 lg:grid-cols-[1fr_80px_1fr] gap-6 md:gap-9 lg:gap-14">
         {/* Vertical line spanning entire timeline */}
         <div className="pointer-events-none absolute left-1/2 top-0 bottom-0 hidden lg:block -translate-x-1/2 z-0">
           <div className="h-full w-1" style={{ backgroundColor: '#000000' }} />
@@ -207,10 +207,10 @@ function HowItWorks() {
         <div className="hidden lg:flex col-start-2 items-center justify-center">
           <Badge n={1} />
         </div>
-        <div className="lg:col-start-3" />
+        <div className="hidden lg:block lg:col-start-3" />
 
         {/* Step 2 - right */}
-        <div className="col-start-1 lg:col-start-1" />
+        <div className="hidden lg:block lg:col-start-1" />
         <div className="hidden lg:flex col-start-2 items-center justify-center">
           <Badge n={2} />
         </div>
@@ -225,7 +225,7 @@ function HowItWorks() {
         <div className="hidden lg:flex col-start-2 items-center justify-center">
           <Badge n={3} />
         </div>
-          <div className="lg:col-start-3" />
+          <div className="hidden lg:block lg:col-start-3" />
         </div>
         <SimpleScrollArrow targetId="wedding-categories" className="mt-5 md:mt-7" />
       </div>
@@ -296,7 +296,7 @@ function StepCard({ _number, title, text }: { _number?: number; title: string; t
   return (
     <div 
       ref={ref}
-      className={`rounded-2xl border p-6 shadow-sm ring-1 transition-all duration-700 ease-out will-change-transform hover:shadow-xl hover:scale-[1.02] ${
+      className={`mx-auto w-full max-w-[560px] sm:max-w-[640px] rounded-2xl border p-2 md:p-4 shadow-sm ring-1 transition-all duration-700 ease-out will-change-transform hover:shadow-xl hover:scale-[1.02] ${
         isVisible 
           ? 'translate-y-0 opacity-100' 
           : 'translate-y-12 opacity-0'
@@ -305,7 +305,7 @@ function StepCard({ _number, title, text }: { _number?: number; title: string; t
     >
       <AnimatedTextReveal 
         text={title}
-        className="text-2xl md:text-3xl lg:text-4xl font-normal leading-tight"
+        className="text-lg md:text-2xl lg:text-3xl font-normal leading-tight"
         style={{
           fontFamily: "'Times New Roman', serif",
           color: '#000000',
@@ -313,7 +313,7 @@ function StepCard({ _number, title, text }: { _number?: number; title: string; t
         delay={isVisible ? 200 : 0}
         duration={80}
       />
-      <p className="mt-3 max-w-xl" style={{ color: '#1A1A1A' }}>{text}</p>
+      <p className="mt-1 text-sm md:text-base leading-relaxed" style={{ color: '#1A1A1A' }}>{text}</p>
     </div>
   );
 }
